@@ -40,9 +40,9 @@ INSTALLED_APPS = [
     # https://docs.djangoproject.com/en/4.1/ref/contrib/postgres/search/
     "django.contrib.postgres",
     "rest_framework",
-    "user",
-    "common_weakness_enumeration",
-    "common_vulnerability_enumeration",
+    "apps.user",
+    "apps.common_weakness_enumeration",
+    "apps.common_vulnerability_enumeration",
 ]
 
 MIDDLEWARE = [
@@ -80,10 +80,40 @@ WSGI_APPLICATION = "core.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    # "default": {
+    #     "ENGINE": "django.db.backends.sqlite3",
+    #     "NAME": BASE_DIR / "db.sqlite3",
+    # }
+    # https://youtu.be/dlkOXZrMVE8?t=426
+    # BUG nie można zrezygnowac z bazy, musi być default; ale jak się jej nie chce używać to wystarczy dac pusty słownik
+    "default": {},
+    "users": {
+        "ENGINE": "django.db.backends.postgresql",
+        # nazwaProjektu_nazwaApkiWLiczbieMnogiej
+        "NAME": "pimpuszek_users",
+        "USER": "postgres",
+        "PASSWORD": "password",
+        # host nie trzeba
+        # "HOST": "localhost",
+    },
+    "common_weakness_enumerations": {
+        "ENGINE": "django.db.backends.postgresql",
+        # nazwaProjektu_nazwaApkiWLiczbieMnogiej
+        "NAME": "pimpuszek_common_weakness_enumerations",
+        "USER": "postgres",
+        "PASSWORD": "password",
+        # host nie trzeba
+        # "HOST": "localhost",
+    },
+    "common_vulnerability_enumerations": {
+        "ENGINE": "django.db.backends.postgresql",
+        # nazwaProjektu_nazwaApkiWLiczbieMnogiej
+        "NAME": "pimpuszek_common_vulnerability_enumerations",
+        "USER": "postgres",
+        "PASSWORD": "password",
+        # host nie trzeba
+        # "HOST": "localhost",
+    },
 }
 
 
