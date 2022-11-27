@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./core/home/pages/Home";
 import FlashCardList from "./core/flashcards/pages/FlashCardList";
 import QuizzList from "./core/quizzes/pages/QuizzList";
+import LessonList from "./core/lessons/pages/LessonList";
 
 import "./App.css";
 
@@ -15,6 +16,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="flashcards" element={<FlashCardList />} />
             <Route path="quizzes" element={<QuizzList />} />
+            <Route path="lessons" element={<LessonList />} />
           </Route>
         </Routes>
       </BrowserRouter>

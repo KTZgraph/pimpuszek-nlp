@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { germanLetters as extraLetters } from "../../../helpers/extra_letters";
 import { myXOR } from "../../../helpers/utils";
 
