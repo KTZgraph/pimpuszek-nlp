@@ -41,4 +41,4 @@ class LessonFile(models.Model):
     date_created = models.DateTimeField(default=now)
 
     def __str__(self) -> str:
-        return str(self.lesson_file)
+        return str(self.filename)

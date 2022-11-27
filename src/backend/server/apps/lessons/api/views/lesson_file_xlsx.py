@@ -48,9 +48,17 @@ class LessonXlsxView(APIView):
 
         if lesson_filename:
             # szukam po pliku - np gdy źle zuploadowałam
-            lesson_file_list = LessonFile.objects.filter(filename=lesson_filename)
+            print("\n\n\n\n\nlesson_filename:", lesson_filename)
+
+            # lesson_file_list = LessonFile.objects.filter(filename=lesson_filename)
+            lesson_file_list = LessonFile.objects.all()
+            for i in lesson_file_list:
+                print("filename:", i.filename)
+
+            print("---------------- tu ----------------", lesson_file_list)
             return Response(
-                f"Wszytkie lekcje w których plik {str(lesson_file_list)} się znajduje {[i.lesson_dir__dir_name for i in lesson_file_list]}",
+                # f"Wszytkie lekcje w których plik {str(lesson_file_list)} się znajduje {[i.lesson_dir__dir_name for i in lesson_file_list]}",
+                f"Wszytkie lekcje w których plik {str(lesson_file_list)} się znajduje",
                 status=status.HTTP_200_OK,
             )
 

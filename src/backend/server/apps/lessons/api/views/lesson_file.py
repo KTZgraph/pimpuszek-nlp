@@ -86,7 +86,9 @@ class LessonFileView(APIView):
 
         # WARNING - zabezpieczenie przed kopiami sprawdzam czy taki plik już istnieje
         lesson_file_obj = LessonFile.objects.filter(
-            filename=lesson_filename, lesson_dir__dir_name=lesson_dirname
+            # FIXME tutaj BŁĄD przy tworzeniu
+            filename=lesson_filename,
+            lesson_dir__dir_name=lesson_dirname,
         )
 
         print("lesson_file: ", lesson_file)
@@ -95,7 +97,7 @@ class LessonFileView(APIView):
         if lesson_file_obj.exists():
             return Response(
                 {
-                    "message": f"Błąd - plik: {lesson_file} istneije już w folderze {lesson_dirname}"
+                    "message": f"Błąd - plik: {lesson_file_obj[0].filename} istneije już w folderze {lesson_dirname}"
                 },
                 status=status.HTTP_400_BAD_REQUEST,
             )
