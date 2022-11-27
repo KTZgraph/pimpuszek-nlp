@@ -26,20 +26,15 @@
   --rotate-x: 180deg;
 }
 
-.flash-card.front {
-  /* tekst pytań do lewej, bo defautlowo jest na środku, co w przypadku odpowiedzi jest ok */
-  left: 0;
-}
-
-.flash-card .flash-card__front,
-.flash-card .flash-card__back {
+.flash-card__front,
+.flash-card__back {
   position: absolute;
   padding: 1rem;
   /* schowanie odpowiedzi */
   backface-visibility: hidden;
 }
 
-.flash-card .flash-card__back {
+.flash-card__back {
   /* obrócenie odpowiedzi na tył  */
   //   muszę obrócić odwpoeidź też o oś X
   transform: rotateX(180deg);
