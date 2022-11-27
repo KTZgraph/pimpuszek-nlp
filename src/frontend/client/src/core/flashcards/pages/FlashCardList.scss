@@ -1,0 +1,26 @@
+.flash-card-list {
+  display: flex;
+  flex-direction: column;
+  background-color: grey;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.flash-card-list__actions {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 10px;
+  gap: 50px;
+}
+
+.flash-card-list__arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  background-color: white;
+  width: 200px;
+  height: 40px;
+}
