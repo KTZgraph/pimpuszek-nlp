@@ -558,3 +558,4 @@ google-services.json
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/python,pythonvanilla,visualstudiocode,react,reactnative,node
+src/backend/server/media/*
