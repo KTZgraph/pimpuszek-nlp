@@ -104,6 +104,7 @@ class LessonFileView(APIView):
         """Dodaje plik do leckcji"""
         lesson_dirname = request.data.get("lesson_name")
         lesson_file = request.data.get("lesson_file")
+        lesson_filename = str(lesson_file)
 
         if not lesson_dirname:
             return Response(
@@ -135,9 +136,8 @@ class LessonFileView(APIView):
             )
 
         # WARNING - zabezpieczenie przed kopiami sprawdzam czy taki plik już istnieje
-        lesson_file_obj = LessonFile.objects.filter(
-            lesson_file=lesson_file, lesson_dir__dir_name=lesson_dirname
-        )
+        lesson_file_obj = LessonFile.objects.filter(filename=lesson_filename)
+
         print("lesson_file: ", lesson_file)
         print("lesson_dirname: ", lesson_dirname)
 
@@ -151,7 +151,7 @@ class LessonFileView(APIView):
 
         try:
             LessonFile.objects.create(
-                lesson_dir=lesson_dir, lesson_file=lesson_file
+                lesson_dir=lesson_dir, lesson_file=lesson_file, filename=lesson_filename
             ).save()
         except Exception as e:
             return Response(

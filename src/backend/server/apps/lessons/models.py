@@ -36,13 +36,9 @@ class LessonFile(models.Model):
     lesson_dir = models.ForeignKey(LessonDir, on_delete=models.CASCADE)
     # lesson_file = models.FileField(upload_to="lessons/")
     # WARNING customowa ściezka do uploadu plików
+    filename = models.TextField(unique=False, null=False)
     lesson_file = models.FileField(upload_to=lesson_file_upload)
     date_created = models.DateTimeField(default=now)
 
     def __str__(self) -> str:
-        if "\\" in self.lesson_file:
-            # ścieżka na windows
-            return str(self.lesson_file.split("\\")[-1])
-
-        # ścieżka na Linux
-        return str(self.lesson_file.split("/")[-1])
+        return str(self.lesson_file)
