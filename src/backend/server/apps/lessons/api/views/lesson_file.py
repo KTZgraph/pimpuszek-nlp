@@ -7,16 +7,18 @@ import os
 
 
 from ...models import LessonDir, LessonFile
+from .utils.file_name import parse_filename
 
 
 class LessonFileView(APIView):
     def get(self, request):
         lesson_filename = request.query_params.get("filename")
+        if lesson_filename:
+            lesson_filename = parse_filename(lesson_filename)
         lesson_dirname = request.query_params.get("lesson")
 
         if lesson_dirname:
             # http://localhost:8000/api/lessons/files?lesson=lesson_2
-            print("lesson_dir: ", lesson_dirname)
             try:
                 lesson_dir_obj = LessonDir.objects.get(dir_name=lesson_dirname)
                 lesson_file_list = LessonFile.objects.filter(lesson_dir=lesson_dir_obj)
@@ -53,7 +55,7 @@ class LessonFileView(APIView):
         """Dodaje plik do leckcji"""
         lesson_dirname = request.data.get("lesson_name")
         lesson_file = request.data.get("lesson_file")
-        lesson_filename = str(lesson_file)
+        lesson_filename = parse_filename(str(lesson_file))
 
         if not lesson_dirname:
             return Response(
@@ -91,9 +93,6 @@ class LessonFileView(APIView):
             lesson_dir__dir_name=lesson_dirname,
         )
 
-        print("lesson_file: ", lesson_file)
-        print("lesson_dirname: ", lesson_dirname)
-
         if lesson_file_obj.exists():
             return Response(
                 {
@@ -103,9 +102,19 @@ class LessonFileView(APIView):
             )
 
         try:
+            print("\n\n\n\n")
+            print("lesson_filename: ", lesson_filename)
+            print("lesson_file: ", lesson_file)
             LessonFile.objects.create(
                 lesson_dir=lesson_dir, lesson_file=lesson_file, filename=lesson_filename
             ).save()
+
+            all_files = LessonFile.objects.all()
+            for i in all_files:
+                print(i.lesson_file)
+                print(i.filename)
+
+            print("-----------------------------------------")
         except Exception as e:
             return Response(
                 {

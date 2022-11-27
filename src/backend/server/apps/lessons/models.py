@@ -27,7 +27,7 @@ class LessonDir(models.Model):
 
 def lesson_file_upload(instance, filename):
     lesson_dir = instance.lesson_dir
-    upload_to = os.path.join(lesson_dir.path, filename)
+    upload_to = os.path.join(lesson_dir.path, f"{filename}")
     return upload_to
 
 

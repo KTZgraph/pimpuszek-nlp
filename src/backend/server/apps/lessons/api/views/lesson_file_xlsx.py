@@ -7,6 +7,9 @@ import os
 
 
 from ...models import LessonDir, LessonFile
+from ...helpers.excel_tables import excel_to_json
+
+from .utils.file_name import parse_filename
 
 
 class LessonXlsxView(APIView):
@@ -14,6 +17,9 @@ class LessonXlsxView(APIView):
 
     def get(self, request):
         lesson_filename = request.query_params.get("filename")
+        if lesson_filename:
+            lesson_filename = parse_filename(lesson_filename)
+
         lesson_dirname = request.query_params.get("lesson")
 
         if lesson_filename and lesson_dirname:
@@ -34,9 +40,15 @@ class LessonXlsxView(APIView):
 
         if lesson_dirname:
             # zwraca wszsytkie pliki excela dla dane lekcji - przydatne do quizów z całej lekcji
-            lesson_dir_obj = LessonDir.objects.get(dir_name=lesson_dirname)
+            lesson_dir_obj = LessonDir.objects.filter(dir_name=lesson_dirname)
+            if not lesson_dir_obj.exists():
+                return Response(
+                    f"Lekcja {lesson_dirname} NIE istnieje ",
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
             # wszsytkei pliki dla tej lekcji/foderu
-            lesson_file_list = LessonFile.objects.filter(lesson_dir=lesson_dir_obj)
+            lesson_file_list = LessonFile.objects.filter(lesson_dir=lesson_dir_obj[0])
             xlsx_file_list = [
                 str(i) for i in lesson_file_list if str(i).split(".")[-1] == "xlsx"
             ]
@@ -77,4 +89,33 @@ class LessonXlsxView(APIView):
         return Response(
             f"Wszytkie Pliki excel {response}",
             status=status.HTTP_200_OK,
+        )
+
+
+class LessonXlsxToJsonView(APIView):
+    """Zwraca Json z excela - potrzebne do zrobienia quizów"""
+
+    def get(self, request):
+        """Musi już dostać konkretnie któy plik mam zamienić na jsona"""
+        lesson_filename = request.query_params.get("filename")
+        lesson_dirname = request.query_params.get("lesson")
+
+        if lesson_filename and lesson_dirname:
+            lesson_file_obj = LessonFile.objects.filter(
+                filename=lesson_filename, lesson_dir__dir_name=lesson_dirname
+            )
+            if lesson_file_obj.exists() and len(lesson_file_obj) == 1:
+                # jak szukany plik w lekcji nie istnieje
+                filepath = os.path.join(MEDIA_ROOT, lesson_dirname, lesson_filename)
+                json_response = excel_to_json(filepath)
+
+                return Response(
+                    # f"Plik:{lesson_file_obj[0].lesson_file}",
+                    json_response,
+                    status=status.HTTP_200_OK,
+                )
+
+        return Response(
+            f"Plik {lesson_filename} NIE istneije w lekcji {lesson_dirname}",
+            status=status.HTTP_400_BAD_REQUEST,
         )
