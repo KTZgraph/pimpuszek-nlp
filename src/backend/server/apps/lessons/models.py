@@ -14,3 +14,11 @@ class LessonDir(models.Model):
     path = models.FilePathField(allow_folders=True, recursive=True)
     description = models.TextField(max_length=1000, null=True)
     date_created = models.DateTimeField(default=now)
+
+    def __str__(self) -> str:
+        if "\\" in self.path:
+            # ścieżka na windows
+            return str(self.path.split("\\")[-1])
+
+        # ścieżka na Linux
+        return str(self.path.split("/")[-1])

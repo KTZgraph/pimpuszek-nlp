@@ -11,9 +11,11 @@ from ..models import LessonDir
 
 class LessonDirListView(APIView):
     def get(self, request):
+        lesson_dir_list = LessonDir.objects.all()
+        response = [str(i) for i in lesson_dir_list]
 
         return Response(
-            f"lista folderow które są lekcjami {MEDIA_ROOT}",
+            f"lista folderow które są lekcjami {response}",
             status=status.HTTP_200_OK,
         )
 
