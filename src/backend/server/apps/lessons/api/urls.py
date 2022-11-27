@@ -1,5 +1,6 @@
 from django.urls import path
-from .views import LessonDirView, LessonFileView
+from .views.lesson_file import LessonFileView
+from .views.lesson_dir import LessonDirView
 
 urlpatterns = [
     path("", LessonDirView.as_view()),
