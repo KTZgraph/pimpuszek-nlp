@@ -44,3 +44,11 @@
   //   muszę obrócić odwpoeidź też o oś X
   transform: rotateX(180deg);
 }
+
+.flash-card__counter {
+  position: absolute;
+  top: 0;
+  font-size: 0.6rem;
+  font-weight: bold;
+  color: grey;
+}

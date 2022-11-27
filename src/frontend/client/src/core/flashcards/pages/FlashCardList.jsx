@@ -26,6 +26,11 @@ const DUMMY_DATA = [
 const FlashCardList = () => {
   const [flashCardId, setFlashCardId] = useState(0);
   const [flip, setFlip] = useState(false);
+  const [flashCardsTotal, setFlashCardsTotal] = useState(0);
+
+  useEffect(() => {
+    setFlashCardsTotal(data.length);
+  }, []);
 
   const data = DUMMY_DATA;
 
@@ -50,6 +55,8 @@ const FlashCardList = () => {
         answer={data[flashCardId].answer}
         flip={flip}
         setFlip={setFlip}
+        flashCardId={flashCardId}
+        flashCardsTotal={flashCardsTotal}
       />
       <div className="flash-card-list__actions">
         <div
