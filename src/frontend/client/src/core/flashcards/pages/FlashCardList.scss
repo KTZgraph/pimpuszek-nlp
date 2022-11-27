@@ -23,8 +23,10 @@
   background-color: white;
   width: 200px;
   height: 40px;
+  cursor: pointer;
 }
 
 .flash-card-list__arrow--inactive {
   color: grey;
+  cursor: default;
 }
