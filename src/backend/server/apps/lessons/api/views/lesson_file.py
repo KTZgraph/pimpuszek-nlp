@@ -23,7 +23,7 @@ class LessonFileView(APIView):
 
                 return Response(
                     f"Pliki: {[str(i) for i in lesson_file_list]}",
-                    status=status.HTTP_201_CREATED,
+                    status=status.HTTP_200_OK,
                 )
 
             except Exception as e:
