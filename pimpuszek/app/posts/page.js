@@ -11,13 +11,15 @@ async function getPosts() {
 }
 
 const page = () => {
-  let posts = use(getPosts());
-  //   wyświetla sie w konsoli serwera - ten komponent działa jako server komponent
-  console.log(posts);
+  let { posts } = use(getPosts());
 
   return (
     <div>
-      <h1>Post page</h1>
+      <ul>
+        {posts.map((p) => (
+          <li key={p.id}>{p.title}</li>
+        ))}
+      </ul>
     </div>
   );
 };
