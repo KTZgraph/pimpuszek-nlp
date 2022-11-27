@@ -81,10 +81,29 @@ class LessonDirView(APIView):
 
 class LessonFileView(APIView):
     def get(self, request):
-        lesson_dir = request.data.get("lesson_dir")
-        if lesson_dir:
-            # TODO zróć pliki tylko dla jednego folderu
-            print("lesson_dir: ", lesson_dir)
+        lesson_filename = request.query_params.get("filename")
+        lesson_dirname = request.query_params.get("lesson")
+
+        if lesson_dirname:
+            # http://localhost:8000/api/lessons/files?lesson=lesson_2
+            print("lesson_dir: ", lesson_dirname)
+            try:
+                lesson_dir_obj = LessonDir.objects.get(dir_name=lesson_dirname)
+                lesson_file_list = LessonFile.objects.filter(lesson_dir=lesson_dir_obj)
+
+                return Response(
+                    f"Pliki: {[str(i) for i in lesson_file_list]}",
+                    status=status.HTTP_201_CREATED,
+                )
+
+            except Exception as e:
+                return Response(
+                    {
+                        "error": f"Pliki lekcja o nazwie {lesson_dirname} NIE istnieje",
+                        "details": str(e),
+                    },
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
 
         response = []
         lesson_dir_list = LessonDir.objects.all()
@@ -136,7 +155,9 @@ class LessonFileView(APIView):
             )
 
         # WARNING - zabezpieczenie przed kopiami sprawdzam czy taki plik już istnieje
-        lesson_file_obj = LessonFile.objects.filter(filename=lesson_filename)
+        lesson_file_obj = LessonFile.objects.filter(
+            filename=lesson_filename, lesson_dir__dir_name=lesson_dirname
+        )
 
         print("lesson_file: ", lesson_file)
         print("lesson_dirname: ", lesson_dirname)
