@@ -14,22 +14,26 @@ const FlashCard = ({
 
   return (
     <div
-      className={`flash-card ${flip ? "flip" : ""}`}
+      className={`flash-card ${flip ? "flash-card--flip" : ""}`}
       onClick={() => setFlip(!flip)}
     >
-      <div className="flash-card__counter">
+      <div
+        className={`flash-card__counter ${
+          flip ? "flash-card__counter--flip" : ""
+        }`}
+      >
         <p>
           {flashCardId + 1} / {flashCardsTotal}
         </p>
       </div>
       {/* przód ficzki - pytanie */}
-      <div className="front" ref={frontEl}>
+      <div className="flash-card__front" ref={frontEl}>
         {question}
         <div className="flashcard-options"></div>
       </div>
 
       {/* ył fiszki - odpowiedź */}
-      <div className="back" ref={backEl}>
+      <div className="flash-card__back" ref={backEl}>
         {answer}
       </div>
     </div>
