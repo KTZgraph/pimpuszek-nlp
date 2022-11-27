@@ -52,10 +52,22 @@ const FlashCardList = () => {
         setFlip={setFlip}
       />
       <div className="flash-card-list__actions">
-        <div className="flash-card-list__arrow" onClick={handlePrevious}>
+        <div
+          className={`flash-card-list__arrow ${
+            flashCardId === 0 ? "flash-card-list__arrow--inactive" : ""
+          }`}
+          onClick={handlePrevious}
+        >
           <ArrowBackIosIcon className="mui-react-icon" />
         </div>
-        <div className="flash-card-list__arrow" onClick={handleNext}>
+        <div
+          className={`flash-card-list__arrow ${
+            flashCardId === data.length - 1
+              ? "flash-card-list__arrow--inactive"
+              : ""
+          }`}
+          onClick={handleNext}
+        >
           <ArrowForwardIosIcon className="mui-react-icon" />
         </div>
       </div>
