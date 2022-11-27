@@ -1,3 +1,5 @@
+// WARNING - koponenty w folderze app sa defaultowo komponentami serwerowymi
+
 // teraz zamiast nazw plików mamy foldery - pl;ik page.js musi wystąpić
 // zxamiast propsów - to use z reacta do pobierania danych w kopomenecie
 import { use } from "react";
