@@ -42,3 +42,25 @@ class LessonFile(models.Model):
 
     def __str__(self) -> str:
         return str(self.filename)
+
+
+class LessonFileNotion(models.Model):
+    lesson_dir = models.ForeignKey(LessonDir, on_delete=models.CASCADE)
+    filename = models.TextField(unique=False, null=False)
+    date_created = models.DateTimeField(default=now)
+    notion_url = models.URLField(max_length=1000)
+    notion_created_at = models.DateTimeField(default="")
+    notion_modified_at = models.DateTimeField(default="")
+    notion_title = models.TextField(unique=False, null=False)
+    question_column = models.TextField(unique=False, null=False)
+    answer_column = models.TextField(unique=False, null=False)
+    type_column = models.TextField(unique=False, null=False)
+    # notion_properties =
+    # notion_parent_dict =
+    # notion_id =
+    
+    # WARNING - ja NIE chcę zapisywać pliku do bazy, tylko chcę mieć jego ścieżkę
+    filepath = models.CharField(unique=False, null=False, max_length=255)
+
+    def __str__(self) -> str:
+        return str(self.filepath)

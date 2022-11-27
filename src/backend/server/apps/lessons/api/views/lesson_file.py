@@ -12,6 +12,7 @@ from .utils.file_name import parse_filename
 
 class LessonFileView(APIView):
     def get(self, request):
+        # FIXME - wyświeltanie plików zrobionych z notion
         lesson_filename = request.query_params.get("filename")
         if lesson_filename:
             lesson_filename = parse_filename(lesson_filename)

@@ -74,6 +74,7 @@ def parse_title(value):
 
 
 def database_query_to_json(notion_data_query):
+    """BUG - uważąć strasznie na kluze i parsowanie"""
     data = []
     try:
         result_list = notion_data_query.get("results")  # [:10]
@@ -88,9 +89,16 @@ def database_query_to_json(notion_data_query):
                 if value.get("type", "") == "select":
                     data.append({key: parse_select(value)})
                 if value.get("type", "") == "title":
-                    data.append({key: parse_rich_text(value)})
+                    data.append({key: parse_title(value)})
 
         return data
     except BaseException as e:
         print("\n\n\n\ndatabase_query_to_json")
         print(e)
+
+
+def save_notion_db_as_json(notion_database_url: str, token: str):
+    metadata = read_database(notion_database_url, token)
+    notion_data_query = read_database_query(notion_database_url, token)
+    data_json = database_query_to_json(notion_data_query)
+    return {"metadata": metadata, "data": data_json}
