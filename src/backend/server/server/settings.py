@@ -9,6 +9,9 @@ print("BASE_DIR: ", BASE_DIR)
 server_env = environ.Env()
 server_env.read_env(os.path.join(BASE_DIR, ".envs", ".local"))
 
+notion_env = environ.Env()
+notion_env.read_env(os.path.join(BASE_DIR, ".envs", ".notion"))
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 

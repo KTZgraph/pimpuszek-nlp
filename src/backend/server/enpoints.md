@@ -99,3 +99,22 @@ python manage.py migrate lessons --database=lessons
 ## 4.1 GET http://localhost:8000/api/lessons/files/xlsx-json?filename=lekcja_1_09_11_2022.xlsx&lesson=lesson_1
 
 # FIXME - nazwy plików z podłogą
+
+# 5. Notion
+
+## 5.1 GET http://127.0.0.1:8000/api/lessons/notion/
+
+- notion pobieranie plików zrobionych na podstawie Notion
+
+## 5.2 POST http://127.0.0.1:8000/api/lessons/notion/
+
+- notion zapisywanie pliku z urla jako json - potem będzie do quizów przydatne
+- TODO scrapowanie wymowy ze słowników
+
+```json
+{
+  "lesson_name": "lesson_1",
+  "notion_url": "https://www.notion.so/ae9f91e6a3fe476b95ea6d9eae4c4376?v=b244c91401544d689e2242610fa70026",
+  "notion_filename": "słówka.json"
+}
+```

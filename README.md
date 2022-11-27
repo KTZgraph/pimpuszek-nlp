@@ -1,5 +1,7 @@
 # pimpuszek
 
+# NOTION - pamiętać, żeby dac uprawnienia!
+
 ## postgresql
 
 ## https://docs.djangoproject.com/en/4.1/ref/contrib/postgres/search/#full-text-search
@@ -25,4 +27,13 @@ pimpuszek\src\backend\server\apps\lessons\helpers\excel_tables.py:16: FutureWarn
 ```sh
 DEBUG=1
 SECRET_KEY=my_secret_key
+```
+
+## FIXME - docelowo token z bazy usera
+
+- pimpuszek\src\backend\server\.envs\.notion
+
+```sh
+NOTION_TOKEN=token_to_notion
+
 ```
