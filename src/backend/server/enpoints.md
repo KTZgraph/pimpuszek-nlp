@@ -129,3 +129,7 @@ python manage.py migrate lessons --database=lessons
 ## 5.4 GET http://127.0.0.1:8000/api/lessons/notion/
 
 - pobieranie wszsytkich plików stworoznych przez notion
+
+## 5.4 GET http://127.0.0.1:8000/api/lessons/notion?lesson=lesson_1&notion_filename=słówka.json
+
+- zwracanie jsona z pliku - nawet polskie znaki ogarnia w parametrze

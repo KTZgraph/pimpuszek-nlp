@@ -25,6 +25,31 @@ class LessonNotionView(APIView):
     def get(self, request):
         try:
             lesson_name = request.query_params.get("lesson")
+            notion_filename = request.query_params.get("notion_filename")
+
+            if lesson_name and notion_filename:
+                notion_file_list = LessonFileNotion.objects.filter(
+                    lesson_dir__dir_name=lesson_name, filename=notion_filename
+                )
+
+                if not notion_file_list.exists():
+                    return Response(
+                        f"Pliki notion {notion_filename} dla lekcji {lesson_name} NIE istnieje",
+                        status=status.HTTP_400_BAD_REQUEST,
+                    )
+
+                # WARNING powinien być jeden plik o takiej nazwie w folderze - domyślnie przecież nadpisuję
+                json_filepath = os.path.join(
+                    MEDIA_ROOT, lesson_name, notion_file_list[0].filename
+                )
+                with open(json_filepath, "r", encoding="utf-8") as f_json:
+                    data_dict = json.load(f_json)
+
+                return Response(
+                    data_dict,
+                    status=status.HTTP_200_OK,
+                )
+
             if lesson_name:
                 notion_file_list = LessonFileNotion.objects.filter(
                     lesson_dir__dir_name=lesson_name
