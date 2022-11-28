@@ -55,10 +55,11 @@ class LessonFileNotion(models.Model):
     question_column = models.TextField(unique=False, null=False)
     answer_column = models.TextField(unique=False, null=False)
     type_column = models.TextField(unique=False, null=False)
+    example_column = models.TextField(unique=False, null=True)
     # notion_properties =
     # notion_parent_dict =
     # notion_id =
-    
+
     # WARNING - ja NIE chcę zapisywać pliku do bazy, tylko chcę mieć jego ścieżkę
     filepath = models.CharField(unique=False, null=False, max_length=255)
 

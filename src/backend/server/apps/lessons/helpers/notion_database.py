@@ -74,7 +74,8 @@ def parse_title(value):
 
 
 def database_query_to_json(notion_data_query):
-    """BUG - uważąć strasznie na kluze i parsowanie"""
+    # WARNING
+    """WARNING - uważąć strasznie na kluze i parsowanie"""
     data = []
     try:
         result_list = notion_data_query.get("results")  # [:10]
@@ -82,14 +83,18 @@ def database_query_to_json(notion_data_query):
 
         for item in result_list:
             properties = item.get("properties")
+            tmp = {}
             for key, value in properties.items():
 
                 if value.get("type", "") == "rich_text":
-                    data.append({key: parse_rich_text(value)})
+                    tmp[key] = parse_rich_text(value)
                 if value.get("type", "") == "select":
-                    data.append({key: parse_select(value)})
+                    tmp[key] = parse_select(value)
+
                 if value.get("type", "") == "title":
-                    data.append({key: parse_title(value)})
+                    tmp[key] = parse_title(value)
+
+            data.append(tmp)
 
         return data
     except BaseException as e:

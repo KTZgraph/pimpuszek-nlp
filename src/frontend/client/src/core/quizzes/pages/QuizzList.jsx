@@ -1,34 +1,19 @@
 import { useState, useEffect } from "react";
-
+import axios from "axios";
 import Quizz from "../components/Quizz";
 import "./QuizzList.scss";
 
-const DUMMY_DATA = [
-  {
-    id: 1,
-    question: "Question 1",
-    answer: "Answer 1",
-    type: "rzeczwonik",
-    examples: ["example 1", "example 2"],
-  },
-  {
-    id: 2,
-    question: "Question 2",
-    answer: "Answer 2",
-    type: "przymiotnik",
-  },
-  {
-    id: 3,
-    question: "Question 3",
-    answer: "Answer 3",
-    type: "zdanie pytające",
-  },
-];
-
 const QuizzList = () => {
   const [quizzId, setQuizzId] = useState(0);
-  const [data, setData] = useState(DUMMY_DATA);
+  const [data, setData] = useState([]);
   const [quizzesTotal, setQuizzesTotal] = useState(0);
+
+  const [quizColumns, setQuizColumns] = useState({
+    question_column: "",
+    answer_column: "",
+    type_column: "",
+    example_column: "",
+  });
 
   const handleNext = (mark) => {
     console.log("Odpowiedź mark: ", mark);
@@ -39,8 +24,28 @@ const QuizzList = () => {
   };
 
   useEffect(() => {
-    setQuizzesTotal(data.length);
-  }, [data]);
+    const fetchData = async () => {
+      const result = await axios(
+        "/api/lessons/notion?lesson=lesson_1&notion_filename=słówka.json"
+      );
+
+      console.log(result.data);
+      setQuizColumns({
+        question_column: result.data.question_column,
+        answer_column: result.data.answer_column,
+        type_column: result.data.type_column,
+        example_column: result.data.example_column,
+      });
+
+      setData(result.data.data);
+      setQuizzesTotal(result.data.data.length);
+    };
+
+    fetchData();
+    // }, [data]);
+  }, []);
+
+  if (data?.length === 0) return null;
 
   return (
     <div className="quiz-list">
@@ -48,13 +53,16 @@ const QuizzList = () => {
         {quizzId + 1} / {quizzesTotal}
       </div>
       <Quizz
-        question={data[quizzId].question}
-        answer={data[quizzId].answer}
-        placeholder={data[quizzId].type}
+        // question={data[quizzId].question}
+        question={data[quizzId][quizColumns.question_column]}
+        answer={data[quizzId][quizColumns.answer_column]}
+        placeholder={data[quizzId][quizColumns.type_column]}
         handleNext={handleNext}
-        exampleList={data[quizzId].examples}
+        // exampleList={data[quizzId].examples}
+        exampleList={data[quizzId][quizColumns.example_column]}
       />
-      {quizzId === data.length - 1 ? <p>Koniec quizów</p> : null}
+
+      {/* {quizzId === data.length - 1 ? <p>Koniec quizów</p> : null} */}
     </div>
   );
 };

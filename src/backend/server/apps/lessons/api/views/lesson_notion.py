@@ -46,7 +46,13 @@ class LessonNotionView(APIView):
                     data_dict = json.load(f_json)
 
                 return Response(
-                    data_dict,
+                    {
+                        "data": data_dict,
+                        "question_column": notion_file_list[0].question_column,
+                        "answer_column": notion_file_list[0].answer_column,
+                        "type_column": notion_file_list[0].type_column,
+                        "example_column": notion_file_list[0].example_column,
+                    },
                     status=status.HTTP_200_OK,
                 )
 
@@ -90,6 +96,7 @@ class LessonNotionView(APIView):
             question_column = request.data.get("question_column")
             answer_column = request.data.get("answer_column")
             type_column = request.data.get("type_column")
+            example_column = request.data.get("example_column")
 
             if not (lesson_name and notion_url and notion_filename):
                 return Response(
@@ -168,6 +175,7 @@ class LessonNotionView(APIView):
                     question_column=question_column,
                     answer_column=answer_column,
                     type_column=type_column,
+                    example_column=example_column,
                     # WARNING - ja NIE chcę zapisywać pliku do bazy, tylko chcę mieć jego ścieżkę
                     filepath=notion_file_path,
                 )
