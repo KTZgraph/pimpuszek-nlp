@@ -23,13 +23,36 @@ def dict_to_byte_like_object(data_dict: dict):
 
 class LessonNotionView(APIView):
     def get(self, request):
-        lesson_name = request.query_paramas.get("lesson")
+        try:
+            lesson_name = request.query_params.get("lesson")
+            if lesson_name:
+                notion_file_list = LessonFileNotion.objects.filter(
+                    lesson_dir__dir_name=lesson_name
+                )
 
-        return Response(
-            # f"Połączenie z notion {server_env.NOTION_TOKEN}",
-            f"Połączenie z notion",
-            status=status.HTTP_200_OK,
-        )
+                return Response(
+                    f"Pliki notion dla lekcji {lesson_name} to {[str(i) for i in notion_file_list]}",
+                    status=status.HTTP_200_OK,
+                )
+
+            response = {}
+            lesson_dir_list = LessonDir.objects.all()
+
+            for lesson_dir in lesson_dir_list:
+                response[lesson_dir.dir_name] = [
+                    i.filename
+                    for i in LessonFileNotion.objects.filter(lesson_dir=lesson_dir)
+                ]
+
+            return Response(
+                response,
+                status=status.HTTP_200_OK,
+            )
+        except Exception as e:
+            return Response(
+                {"details": str(e)},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
     def post(self, request):
         """WARNING - pamietać o uprawnieniach do pliku"""

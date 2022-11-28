@@ -113,11 +113,19 @@ python manage.py migrate lessons --database=lessons
 
 ```json
 {
-    "lesson_name": "lesson_1",
-    "notion_url": "https://www.notion.so/ae9f91e6a3fe476b95ea6d9eae4c4376?v=b244c91401544d689e2242610fa70026",
-    "notion_filename": "słówka",
-    "question_column": "polski",
-    "answer_column": "niemiecki",
-    "type_column": "Select"
+  "lesson_name": "lesson_1",
+  "notion_url": "https://www.notion.so/ae9f91e6a3fe476b95ea6d9eae4c4376?v=b244c91401544d689e2242610fa70026",
+  "notion_filename": "słówka",
+  "question_column": "polski",
+  "answer_column": "niemiecki",
+  "type_column": "Select"
 }
 ```
+
+## 5.3 GET http://127.0.0.1:8000/api/lessons/notion?lesson=lesson_1
+
+- pobieranie plikow notion dla lekcji
+
+## 5.4 GET http://127.0.0.1:8000/api/lessons/notion/
+
+- pobieranie wszsytkich plików stworoznych przez notion
