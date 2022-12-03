@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import {
   getLessonDetails,
   uploadFileToLesson,
+  getLessonNotionQuizes,
 } from "../../../api/lessons/pages";
 
 const FileUpload = ({ handleClick }) => {
@@ -24,6 +25,7 @@ const FileUpload = ({ handleClick }) => {
 const LessonDetails = () => {
   const { lessonName } = useParams();
   const [data, setData] = useState(null);
+  const [notionQuizList, setNotionQuizList] = useState([]);
   const [errorList, setErrorList] = useState([]);
 
   const handleUpload = async (fileListUpload) => {
@@ -52,11 +54,14 @@ const LessonDetails = () => {
   const fetchData = useCallback(async () => {
     const response = await getLessonDetails(lessonName);
     setData(response.data.data);
+
+    const responseNotionQuizList = await getLessonNotionQuizes(lessonName);
+    setNotionQuizList(responseNotionQuizList.data.data);
   }, [lessonName]);
 
   useEffect(() => {
     fetchData();
-  }, [data, fetchData]);
+  }, [fetchData]);
 
   if (!data) return null;
 
@@ -97,6 +102,21 @@ const LessonDetails = () => {
           ))}
         </ul>
       ) : null}
+      <hr />
+      <h2>Notion Quizy</h2>
+      <ul>
+        {notionQuizList.map((notionQuiz) => (
+          <li key={notionQuiz.id}>
+            <span>id: {notionQuiz.id}</span>
+            <span>notion_url: {notionQuiz.notion_url}</span>
+            <span>mongodb_collection: {notionQuiz.mongodb_collection}</span>
+            <span>filename: {notionQuiz.filename}</span>
+            <span>mongodb_inserted_id: {notionQuiz.mongodb_inserted_id}</span>
+            <span>created_at: {notionQuiz.created_at}</span>
+            <span>filepath: {notionQuiz.filepath}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
