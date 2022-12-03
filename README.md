@@ -1,5 +1,9 @@
 # pimpuszek
 
+# TODO Two-Factor Authentication (2FA) in Python
+
+- https://www.youtube.com/watch?v=o0XZZkI69E8
+
 # NOTION - pamiętać, żeby dac uprawnienia!
 
 ## postgresql

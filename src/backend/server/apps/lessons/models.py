@@ -65,3 +65,11 @@ class LessonFileNotion(models.Model):
 
     def __str__(self) -> str:
         return str(self.filepath)
+
+
+# TODO po połączeniu z mongoDB
+# class LessonQuizNotion(models.Model):
+#     lesson_dir = models.ForeignKey(LessonDir, on_delete=models.CASCADE)
+#     notion_url = models.URLField()
+#     mongodb_url = models.URLField()
+#     date_created = models.DateTimeField(default=now)
