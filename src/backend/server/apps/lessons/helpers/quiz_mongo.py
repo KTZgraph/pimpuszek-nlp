@@ -3,22 +3,18 @@
 # pip install pymongo dnspython
 
 from pymongo import MongoClient
+from bson.objectid import ObjectId
+import datetime
 
 
 class QuizMongo:
     def __init__(
         self,
-        quiz_data: list,
-        lesson_name,
-        quiz_filename,
         mongodb_username,
         mongodb_password,
         mongodb_dabase_name,
     ) -> None:
         # dane musza być słownikiem
-        self.quiz_data = {"quiz_filename": quiz_filename, "data": quiz_data}
-        self.lesson_name = lesson_name
-        self.quiz_filename = quiz_filename
         self.mongodb_username = mongodb_username
         self.mongodb_password = mongodb_password
         self.mongodb_dabase_name = mongodb_dabase_name
@@ -28,20 +24,45 @@ class QuizMongo:
         # nazwa bazy danych to nazwa aplikacji
         self.database = self.client[self.mongodb_dabase_name]
 
-    def save_quiz_data(self):
+    def save_quiz_data(self, quiz_filename, quiz_data: list, lesson_name):
         # Important: In MongoDB, a collection is not created until it gets content!
 
-        try:
-            print(self.database.list_collection_names())
-        except Exception as e:
-            print("e", e)
+        current_date = datetime.datetime.utcnow()
+        mongodb_data = {
+            "filename": quiz_filename,
+            "data": quiz_data,
+            "created_at": current_date,
+        }
 
         # nazwa kolekcji to nazwa lekcji
-        self.collection = self.database[self.lesson_name]
+        self.collection = self.database[lesson_name]
 
-        x = self.collection.insert_one(self.quiz_data)
+        x = self.collection.insert_one(mongodb_data)
         print(x.inserted_id)
 
         # # zamykanie połączenia
         self.client.close()
-        return x.inserted_id
+        return x.inserted_id, current_date
+
+
+class QuizMongoSearcher:
+    def __init__(
+        self,
+        mongodb_username,
+        mongodb_password,
+        mongodb_dabase_name,
+    ) -> None:
+        self.mongodb_username = mongodb_username
+        self.mongodb_password = mongodb_password
+        self.mongodb_dabase_name = mongodb_dabase_name
+        self.cluster = f"mongodb+srv://{self.mongodb_username}:{self.mongodb_password}@cluster0.jnppsix.mongodb.net/?retryWrites=true&w=majority"
+
+        self.client = MongoClient(self.cluster)
+        # nazwa bazy danych to nazwa aplikacji
+        self.database = self.client[self.mongodb_dabase_name]
+
+    def get_quiz_data(self, lesson_name, quiz_mongo_id):
+        objInstance = ObjectId(quiz_mongo_id)
+        self.collection = self.database[lesson_name]
+        document = self.collection.find_one({"_id": objInstance})
+        return document

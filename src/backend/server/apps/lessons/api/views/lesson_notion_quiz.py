@@ -9,7 +9,7 @@ from server.settings import MEDIA_ROOT, notion_env, mongodb_env
 
 from ...helpers.notion_quiz import NotionQuiz
 from ...helpers.quiz_creator import QuizCreator
-from ...helpers.quiz_mongo import QuizMongo
+from ...helpers.quiz_mongo import QuizMongo, QuizMongoSearcher
 
 
 class LessonNotionQuizView(APIView):
@@ -27,8 +27,26 @@ class LessonNotionQuizView(APIView):
     """
 
     def get(self, request):
+        search_quiz_mongo_id = "638b9f79e4e8866d46cf23d9"
+        lesson_name = "lesson_1"
+
+        mongodb_username = mongodb_env("MONGODB_USERNAME")
+        mongodb_password = mongodb_env("MONGODB_PASSWORD")
+        mongodb_dabase_name = mongodb_env("MONGODB_DATABASE_NAME")
+
+        document = QuizMongoSearcher(
+            mongodb_username=mongodb_username,
+            mongodb_password=mongodb_password,
+            mongodb_dabase_name=mongodb_dabase_name,
+        ).get_quiz_data(lesson_name=lesson_name, quiz_mongo_id=search_quiz_mongo_id)
+
         return Response(
-            "GET LessonNotionQuizView",
+            {
+                "message": "GET LessonNotionQuizView",
+                "_id": str(document["_id"]),
+                "filename": document["filename"],
+                "data": document["data"],
+            },
             status=status.HTTP_200_OK,
         )
 
@@ -56,18 +74,20 @@ class LessonNotionQuizView(APIView):
 
         # FIXME
         token = notion_env("NOTION_TOKEN")
-        # raw_data = NotionQuiz(user_data=user_data, token=token).result
-        # quiz_data = QuizCreator(
-        #     raw_data=raw_data,
-        #     question_column_list=question_column_list,
-        #     answer_column_list=answer_column_list,
-        #     example_column_list=example_column_list,
-        # ).quiz_data
+        raw_data = NotionQuiz(user_data=user_data, token=token).result
+        quiz_data = QuizCreator(
+            raw_data=raw_data,
+            question_column_list=question_column_list,
+            answer_column_list=answer_column_list,
+            example_column_list=example_column_list,
+        ).quiz_data
 
         # zapisywanie fizyczne pliku
-        quiz_filepath = os.path.join(MEDIA_ROOT, "lesson_1", "my_quiz.json")
-        # with open(quiz_filepath, "w", encoding="utf-8") as f:
-        #     json.dump(quiz_data, f, ensure_ascii=False)
+        quiz_filepath = os.path.join(
+            MEDIA_ROOT, "lesson_1", "quizzes", f"{quiz_filename}.json"
+        )
+        with open(quiz_filepath, "w", encoding="utf-8") as f:
+            json.dump(quiz_data, f, ensure_ascii=False)
 
         # FIXMe - na razie na sztywno z pliku - nie chce męczyć api
         with open(quiz_filepath, "r", encoding="utf-8") as f_json:
@@ -77,13 +97,15 @@ class LessonNotionQuizView(APIView):
         mongodb_password = mongodb_env("MONGODB_PASSWORD")
         mongodb_dabase_name = mongodb_env("MONGODB_DATABASE_NAME")
         quiz_mongo_id = QuizMongo(
-            quiz_data=quiz_data,
-            lesson_name=lesson_name,
-            quiz_filename=quiz_filename,
             mongodb_username=mongodb_username,
             mongodb_password=mongodb_password,
             mongodb_dabase_name=mongodb_dabase_name,
-        ).save_quiz_data()
+        ).save_quiz_data(
+            quiz_filename=quiz_filename,
+            quiz_data=quiz_data,
+                    lesson_name=lesson_name,
+
+        )
 
         return Response(
             # {"message": "POST LessonNotionQuizView", "user_data": user_data},

@@ -8,6 +8,8 @@ import os
 
 from ...models import LessonDir
 
+QUIZZES_FOLDER_NAME = "quizzes"
+
 
 class LessonDirView(APIView):
     """Tworzenie i podgląd lekcji - folderów"""
@@ -18,7 +20,10 @@ class LessonDirView(APIView):
         response = [str(i) for i in lesson_dir_list]
 
         return Response(
-            f"lista folderow które są lekcjami {response}",
+            {
+                "message": f"lista folderow które są lekcjami {response}",
+                "data": response,
+            },
             status=status.HTTP_200_OK,
         )
 
@@ -43,6 +48,9 @@ class LessonDirView(APIView):
 
         lesson_dir_name = f"lesson_{number}"
         lesson_dir_path = os.path.join(MEDIA_ROOT, lesson_dir_name)
+        lesson_quizz_dir_path = os.path.join(
+            MEDIA_ROOT, lesson_dir_name, QUIZZES_FOLDER_NAME
+        )
 
         try:
             lesson_dir_obj = LessonDir.objects.create(
@@ -57,11 +65,16 @@ class LessonDirView(APIView):
             lesson_dir_obj.save()
 
             os.makedirs(lesson_dir_path)
+            # folder do quizów
+            os.makedirs(lesson_quizz_dir_path)
 
         except OSError as e:
             if e.errno == 17:
                 return Response(
-                    {"error": f"folder: {lesson_dir_path} już istenije"},
+                    {
+                        "error": f"folder: {lesson_dir_path} już istenije",
+                        "details": str(e),
+                    },
                     status=status.HTTP_400_BAD_REQUEST,
                 )
         except Exception as e:
@@ -74,6 +87,6 @@ class LessonDirView(APIView):
             )
 
         return Response(
-            f"utworzono nowy folder który jest lekcją w {lesson_dir_path}",
+            {"message": f"utworzono nowy folder który jest lekcją w {lesson_dir_path}"},
             status=status.HTTP_201_CREATED,
         )

@@ -68,8 +68,11 @@ class LessonFileNotion(models.Model):
 
 
 # TODO po połączeniu z mongoDB
-# class LessonQuizNotion(models.Model):
-#     lesson_dir = models.ForeignKey(LessonDir, on_delete=models.CASCADE)
-#     notion_url = models.URLField()
-#     mongodb_url = models.URLField()
-#     date_created = models.DateTimeField(default=now)
+class LessonQuizNotion(models.Model):
+    lesson_dir = models.ForeignKey(LessonDir, on_delete=models.CASCADE)
+    notion_url = models.URLField()
+    mongodb_collection = models.CharField(null=False, max_length=100)
+    filename = models.CharField(null=False, max_length=100)
+    mongodb_inserted_id = models.CharField(null=False, max_length=100)
+    created_at = models.DateTimeField(null=False)
+    filepath = models.CharField(unique=False, null=False, max_length=255)
