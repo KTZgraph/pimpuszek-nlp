@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 import { createLesson } from "../../../api/lessons/pages";
 
 const InputBlock = ({ label, name, type, value, onChange }) => {
@@ -17,6 +19,8 @@ const InputBlock = ({ label, name, type, value, onChange }) => {
 };
 
 const LessonNew = () => {
+  const navigate = useNavigate();
+
   const [error, setError] = useState("");
   const [info, setInfo] = useState("");
   const [formData, setFormData] = useState({
@@ -43,6 +47,7 @@ const LessonNew = () => {
 
       console.log("LessonNew response: ", response.message);
       setInfo(response.message);
+      navigate("/lessons");
 
       //   jak się uda to przekierowanie na inną stronę
     } catch (err) {

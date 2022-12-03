@@ -21,3 +21,9 @@ export const getLessonList = async () => {
   //   return response.data.data;
   return response;
 };
+
+export const getLessonDetails = async (lesson_name) => {
+      const API_URL = `/api/lessons/files?lesson=${lesson_name}`;
+
+
+}

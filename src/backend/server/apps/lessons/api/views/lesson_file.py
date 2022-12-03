@@ -25,7 +25,14 @@ class LessonFileView(APIView):
                 lesson_file_list = LessonFile.objects.filter(lesson_dir=lesson_dir_obj)
 
                 return Response(
-                    f"Pliki: {[str(i) for i in lesson_file_list]}",
+                    {
+                        "message": "Zwraca listę wszystkich plików dla lekcji",
+                        "data": {
+                            
+                            "files": [str(i) for i in lesson_file_list]
+                            
+                            },
+                    },
                     status=status.HTTP_200_OK,
                 )
 

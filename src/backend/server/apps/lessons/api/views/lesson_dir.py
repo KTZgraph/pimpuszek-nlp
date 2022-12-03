@@ -7,6 +7,8 @@ import os
 
 
 from ...models import LessonDir
+from ..serializers.lesson_dir import LessonDirSerializer
+
 
 QUIZZES_FOLDER_NAME = "quizzes"
 
@@ -19,10 +21,12 @@ class LessonDirView(APIView):
         lesson_dir_list = LessonDir.objects.all()
         response = [str(i) for i in lesson_dir_list]
 
+        lesson_dir_data = LessonDirSerializer(lesson_dir_list, many=True)
+
         return Response(
             {
                 "message": f"lista folderow które są lekcjami {response}",
-                "data": response,
+                "data": lesson_dir_data.data,
             },
             status=status.HTTP_200_OK,
         )

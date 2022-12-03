@@ -18,8 +18,17 @@ const LessonList = () => {
     <div>
       LessonList - lista folderów z lekcjami z backendu
       <ul>
-        {dataList.map((d) => (
-          <li key={d}>{d}</li>
+        {dataList.map((lesson) => (
+          <li key={lesson.id}>
+            <span>id: {lesson.id}</span>
+            <span>dir_name: {lesson.dir_name}</span>
+            <span>number: {lesson.number}</span>
+            <span>class_date: {lesson.class_date}</span>
+            <span>title: {lesson.title}</span>
+            <span>path: {lesson.path}</span>
+            <span>description: {lesson.description}</span>
+            <span>date_created: {lesson.date_created}</span>
+          </li>
         ))}
       </ul>
     </div>
