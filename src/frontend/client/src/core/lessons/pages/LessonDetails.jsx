@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+
 import {
   getLessonDetails,
   uploadFileToLesson,
@@ -75,10 +77,12 @@ const LessonDetails = () => {
       <ul>
         {data.files.map((f) => (
           <li key={f.id}>
-            <span>id: {f.id}</span>
-            <span>filename: {f.filename}</span>
-            <span>lesson_file: {f.lesson_file}</span>
-            <span>date_created: {f.lesson_file}</span>
+            {/* <span>id: {f.id}</span> */}
+            <Link to={`/lessons/${lessonName}/${f.filename}`}>
+              <span>filename: {f.filename}</span>
+            </Link>
+            {/* <span>lesson_file: {f.lesson_file}</span> */}
+            {/* <span>date_created: {f.lesson_file}</span> */}
           </li>
         ))}
       </ul>
