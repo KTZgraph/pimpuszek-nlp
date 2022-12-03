@@ -1,0 +1,56 @@
+// https://www.fabmood.com/inspiration/wp-content/uploads/2019/11/color-combos-1.jpg
+
+$gray: rgb(243, 242, 241);
+$green: rgb(33, 115, 70);
+$gray-dark: rgb(230, 230, 230);
+$gray-darker: rgb(205, 205, 205);
+
+$column-name-bgc: #f7e4de;
+// $column-name-bgc: #737373;
+// $column-name-color: #f7e4de;
+$column-name-color: #737373;
+$row-number-color: #737373;
+
+.table_viewer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  background: #fff;
+  font-family: "Noto Sans", sans-serif;
+  color: #444;
+  font-size: 14px;
+}
+
+.table_viewer__cell-row {
+  display: flex;
+}
+
+.table_viewer__row-number,
+.table_viewer__row-number:disabled {
+  border: 1px solid $column-name-color;
+  font-size: 13px;
+  color: $row-number-color;
+  width: 20px;
+  font-size: 10px;
+  text-align: right;
+}
+
+.table_viewer__cell {
+  border: 1px solid $column-name-color;
+  width: 300px;
+  line-break: normal;
+  height: 30px;
+  font-size: 10px;
+}
+
+.table_viewer__cell--column-name {
+  background-color: pink;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 10px 0;
+  text-align: center;
+  color: gray;
+}

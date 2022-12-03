@@ -4,6 +4,7 @@ import Home from "./core/home/pages/Home";
 import FlashCardList from "./core/flashcards/pages/FlashCardList";
 import QuizzList from "./core/quizzes/pages/QuizzList";
 import LessonList from "./core/lessons/pages/LessonList";
+import FileViewer from "./core/file-viewer/pages/FileViewer";
 
 import "./App.css";
 
@@ -14,10 +15,11 @@ function App() {
         <Routes>
           <Route path="/">
             {/* <Route index element={<Home />} /> */}
-            <Route index element={<QuizzList />} />
+            <Route index element={<FileViewer />} />
             <Route path="flashcards" element={<FlashCardList />} />
             <Route path="quizzes" element={<QuizzList />} />
             <Route path="lessons" element={<LessonList />} />
+            <Route path="file-viewer" element={<FileViewer />} />
           </Route>
         </Routes>
       </BrowserRouter>
