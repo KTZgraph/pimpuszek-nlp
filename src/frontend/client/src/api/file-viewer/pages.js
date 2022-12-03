@@ -29,3 +29,9 @@ export const getNotionFile = async (lessonName, notionFilename) => {
     columns,
   };
 };
+
+export const getLessonNotionQuizFile = async (lessonName, quizFilename) => {
+  const API_URL = `/api/lessons/notion-quiz-data/?lesson_name=${lessonName}&quiz_filename=${quizFilename}`;
+  const response = await axios.get(API_URL);
+  return response;
+};

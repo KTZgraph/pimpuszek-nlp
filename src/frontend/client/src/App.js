@@ -25,6 +25,10 @@ function App() {
             <Route path="lessons/new" element={<LessonNew />} />
             <Route path="lessons/:lessonName" element={<LessonDetails />} />
             <Route
+              path="lessons/:lessonName/notion-quiz/:quizFilename"
+              element={<FileViewer />}
+            />
+            <Route
               path="lessons/:lessonName/:lessonFile"
               element={<LessonFile />}
             />

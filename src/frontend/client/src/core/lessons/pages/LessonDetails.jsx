@@ -107,13 +107,17 @@ const LessonDetails = () => {
       <ul>
         {notionQuizList.map((notionQuiz) => (
           <li key={notionQuiz.id}>
-            <span>id: {notionQuiz.id}</span>
-            <span>notion_url: {notionQuiz.notion_url}</span>
-            <span>mongodb_collection: {notionQuiz.mongodb_collection}</span>
-            <span>filename: {notionQuiz.filename}</span>
-            <span>mongodb_inserted_id: {notionQuiz.mongodb_inserted_id}</span>
-            <span>created_at: {notionQuiz.created_at}</span>
-            <span>filepath: {notionQuiz.filepath}</span>
+            {/* <span>id: {notionQuiz.id}</span> */}
+            {/* <span>notion_url: {notionQuiz.notion_url}</span> */}
+            {/* <span>mongodb_collection: {notionQuiz.mongodb_collection}</span> */}
+            <Link
+              to={`/lessons/${lessonName}/notion-quiz/${notionQuiz.filename}`}
+            >
+              <span>filename: {notionQuiz.filename}</span>
+            </Link>
+            {/* <span>mongodb_inserted_id: {notionQuiz.mongodb_inserted_id}</span> */}
+            {/* <span>created_at: {notionQuiz.created_at}</span> */}
+            {/* <span>filepath: {notionQuiz.filepath}</span> */}
           </li>
         ))}
       </ul>

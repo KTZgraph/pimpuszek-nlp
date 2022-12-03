@@ -43,15 +43,14 @@ export const uploadFileToLesson = async (lessonName, lessonFile) => {
   return response;
 };
 
-
 export const getAllNotionQuizes = async () => {
   const API_URL = `/api/lessons/notion/`;
   const response = await axios.get(API_URL);
   return response;
 };
 
-export const getLessonNotionQuizes = async (lesson_name) => {
-  const API_URL = `/api/lessons/notion-quiz/?lesson_name=${lesson_name}`;
+export const getLessonNotionQuizes = async (lessonName) => {
+  const API_URL = `/api/lessons/notion-quiz/?lesson_name=${lessonName}`;
   const response = await axios.get(API_URL);
   return response;
 };

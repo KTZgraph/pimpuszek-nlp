@@ -70,7 +70,7 @@ class LessonFileNotion(models.Model):
 # TODO po połączeniu z mongoDB
 class LessonQuizNotion(models.Model):
     lesson_dir = models.ForeignKey(LessonDir, on_delete=models.CASCADE)
-    notion_url = models.URLField(unique=True, null=False)
+    notion_url = models.URLField(unique=False, null=False)
     mongodb_collection = models.CharField(null=False, max_length=100)
     filename = models.CharField(null=False, max_length=100, unique=False)
     mongodb_inserted_id = models.CharField(null=False, max_length=100, unique=True)

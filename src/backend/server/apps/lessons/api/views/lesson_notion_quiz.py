@@ -118,6 +118,7 @@ class LessonNotionQuizView(APIView):
             question_column_list=question_column_list,
             answer_column_list=answer_column_list,
             example_column_list=example_column_list,
+            type_column_name=type_column_name,
         ).quiz_data
 
         # zapisywanie fizyczne pliku

@@ -1,11 +1,17 @@
 class QuizCreator:
     def __init__(
-        self, raw_data, question_column_list, answer_column_list, example_column_list
+        self,
+        raw_data,
+        question_column_list,
+        answer_column_list,
+        example_column_list,
+        type_column_name,
     ) -> None:
         self.raw_data = raw_data
         self.question_column_list = question_column_list
         self.answer_column_list = answer_column_list
         self.example_column_list = example_column_list
+        self.type_column_name = type_column_name
 
         self.quiz_data = self.get_quiz_data()
 
@@ -23,6 +29,8 @@ class QuizCreator:
             example_value = [row[e] for e in self.example_column_list]
             example_value = " | ".join(example_value)
 
+            type_value = row[self.type_column_name]
+
             quiz_list.append(
                 {
                     "row_id": row_id,
@@ -33,6 +41,7 @@ class QuizCreator:
                     "tries": 0,
                     # suma punktów
                     "scores": 0,
+                    "type": type_value,
                 }
             )
 
