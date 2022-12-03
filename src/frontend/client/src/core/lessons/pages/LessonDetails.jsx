@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams } from "react-router-dom";
 
 import {
@@ -47,20 +47,14 @@ const LessonDetails = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchDataThunk = async () => {
-      try {
-        const response = await getLessonDetails(lessonName);
-        setData(response.data.data);
-      } catch (err) {
-        setErrorList((prevState) => [...prevState, err]);
-        console.log("errorList: ", errorList);
-        console.log("err: ", err);
-      }
-    };
+  const fetchData = useCallback(async () => {
+    const response = await getLessonDetails(lessonName);
+    setData(response.data.data);
+  }, [lessonName]);
 
-    fetchDataThunk();
-  }, []);
+  useEffect(() => {
+    fetchData();
+  }, [data, fetchData]);
 
   if (!data) return null;
 

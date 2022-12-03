@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "./core/home/pages/Home";
+// import Home from "./core/home/pages/Home";
 import FlashCardList from "./core/flashcards/pages/FlashCardList";
 import QuizzList from "./core/quizzes/pages/QuizzList";
 import LessonList from "./core/lessons/pages/LessonList";

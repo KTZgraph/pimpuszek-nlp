@@ -20,30 +20,29 @@ const FileViewer = ({
     columns: [],
   });
 
-  const fetchData = async () => {
-    const {
-      data,
-      question_columns,
-      answer_columns,
-      type_column,
-      example_columns,
-      columns,
-    } = await getNotionFile(lessonName, notionFilename);
-
-    setFileData((prevState) => ({
-      ...prevState,
-      data: data,
-      question_columns: question_columns,
-      answer_columns: answer_columns,
-      type_column: type_column,
-      example_columns: example_columns,
-      columns: columns,
-    }));
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      const {
+        data,
+        question_columns,
+        answer_columns,
+        type_column,
+        example_columns,
+        columns,
+      } = await getNotionFile(lessonName, notionFilename);
+
+      setFileData((prevState) => ({
+        ...prevState,
+        data: data,
+        question_columns: question_columns,
+        answer_columns: answer_columns,
+        type_column: type_column,
+        example_columns: example_columns,
+        columns: columns,
+      }));
+    };
     fetchData();
-  }, []);
+  }, [lessonName, notionFilename]);
 
   if (fileData.data.length === 0) return null;
 
