@@ -23,7 +23,22 @@ export const getLessonList = async () => {
 };
 
 export const getLessonDetails = async (lesson_name) => {
-      const API_URL = `/api/lessons/files?lesson=${lesson_name}`;
+  const API_URL = `/api/lessons/files?lesson=${lesson_name}`;
+  const response = await axios.get(API_URL);
+  return response;
+};
 
+export const uploadFileToLesson = async (lessonName, lessonFile) => {
+  const API_URL = `/api/lessons/files/`;
+  const headers = {
+    accept: "application/json",
+    "Content-Type": lessonFile.type,
+  };
 
-}
+  const body = new FormData();
+  body.append("lesson_name", lessonName);
+  body.append("lesson_file", lessonFile);
+
+  const response = await axios.post(API_URL, body, headers);
+  return response;
+};

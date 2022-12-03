@@ -5,6 +5,7 @@ import FlashCardList from "./core/flashcards/pages/FlashCardList";
 import QuizzList from "./core/quizzes/pages/QuizzList";
 import LessonList from "./core/lessons/pages/LessonList";
 import LessonNew from "./core/lessons/pages/LessonNew";
+import LessonDetails from "./core/lessons/pages/LessonDetails";
 import FileViewer from "./core/file-viewer/pages/FileViewer";
 
 import "./App.css";
@@ -21,6 +22,7 @@ function App() {
             <Route path="quizzes" element={<QuizzList />} />
             <Route path="lessons" element={<LessonList />} />
             <Route path="lessons/new" element={<LessonNew />} />
+            <Route path="lessons/:lessonName" element={<LessonDetails />} />
             <Route path="file-viewer" element={<FileViewer />} />
           </Route>
         </Routes>

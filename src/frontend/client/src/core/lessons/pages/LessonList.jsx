@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import { getLessonList } from "../../../api/lessons/pages";
 
 const LessonList = () => {
@@ -20,14 +22,16 @@ const LessonList = () => {
       <ul>
         {dataList.map((lesson) => (
           <li key={lesson.id}>
-            <span>id: {lesson.id}</span>
-            <span>dir_name: {lesson.dir_name}</span>
-            <span>number: {lesson.number}</span>
-            <span>class_date: {lesson.class_date}</span>
-            <span>title: {lesson.title}</span>
-            <span>path: {lesson.path}</span>
-            <span>description: {lesson.description}</span>
-            <span>date_created: {lesson.date_created}</span>
+            {/* <span>id: {lesson.id}</span> */}
+            <Link to={`/lessons/${lesson.dir_name}`}>
+              <span>dir_name: {lesson.dir_name}</span>
+            </Link>
+            {/* <span>number: {lesson.number}</span> */}
+            {/* <span>class_date: {lesson.class_date}</span> */}
+            {/* <span>title: {lesson.title}</span> */}
+            {/* <span>path: {lesson.path}</span> */}
+            {/* <span>description: {lesson.description}</span> */}
+            {/* <span>date_created: {lesson.date_created}</span> */}
           </li>
         ))}
       </ul>

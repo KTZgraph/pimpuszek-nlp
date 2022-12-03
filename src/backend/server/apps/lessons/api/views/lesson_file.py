@@ -7,6 +7,8 @@ import os
 
 
 from ...models import LessonDir, LessonFile
+from ..serializers.lesson_dir import LessonDirSerializer
+from ..serializers.lesson_file import LessonFileSerializer
 from .utils.file_name import parse_filename
 
 
@@ -28,10 +30,11 @@ class LessonFileView(APIView):
                     {
                         "message": "Zwraca listę wszystkich plików dla lekcji",
                         "data": {
-                            
-                            "files": [str(i) for i in lesson_file_list]
-                            
-                            },
+                            "lesson": LessonDirSerializer(lesson_dir_obj).data,
+                            "files": LessonFileSerializer(
+                                lesson_file_list, many=True
+                            ).data,
+                        },
                     },
                     status=status.HTTP_200_OK,
                 )
@@ -104,7 +107,8 @@ class LessonFileView(APIView):
         if lesson_file_obj.exists():
             return Response(
                 {
-                    "message": f"Błąd - plik: {lesson_file_obj[0].filename} istneije już w folderze {lesson_dirname}"
+                    "error": "nie udało się dodac pliku",
+                    "details": f"Błąd - plik: {lesson_file_obj[0].filename} istneije już w folderze {lesson_dirname}",
                 },
                 status=status.HTTP_400_BAD_REQUEST,
             )
