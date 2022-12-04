@@ -14,6 +14,7 @@ import SinlgeFlashCardViewer from "../components/SinlgeFlashCardViewer";
 const FileViewer = () => {
   const { lessonName, quizFilename } = useParams();
   const [viewerType, setViewerType] = useState("table");
+  const [randomRowNumber, setRandomRowNumber] = useState(null);
 
   // TODO rowId zarządzane prze z komponent główny
   const handleUpdateAPI = async (rowId, mark) => {
@@ -26,14 +27,19 @@ const FileViewer = () => {
       );
 
       // BUG  update danych na widoku - tylko powoduje przeskakiwanie na pierwszą fiszkę
-      setFileData((prevState) => ({
-        ...prevState,
-        // columns: response.data.data.all_columns,
-        // columns: ["question", "answer", "example", "tries", "scores", "type"],
+      // setFileData((prevState) => ({
+      //   ...prevState,
+      //   // columns: response.data.data.all_columns,
+      //   // columns: ["question", "answer", "example", "tries", "scores", "type"],
 
-        columns: ["question", "answer", "type", "tries", "scores"],
-        data: response.data.data.data,
-      }));
+      //   columns: ["question", "answer", "type", "tries", "scores"],
+      //   data: response.data.data.data,
+      // }));
+
+      // ustawianie losowego numeru
+      setRandomRowNumber(
+        Math.floor(Math.random() * response.data.data.data.length)
+      );
     } catch (err) {
       console.log("handleUpdateAPI: ", err);
     }
@@ -56,17 +62,41 @@ const FileViewer = () => {
         data: response.data.data.data,
       }));
 
+      setRandomRowNumber(
+        Math.floor(Math.random() * response.data.data.data.length)
+      );
+
       console.log("response: ", response);
     };
 
     fetchData();
   }, [lessonName, quizFilename]);
 
+  const refreshData = async () => {
+    // tabelka potrzebuje
+    const response = await getLessonNotionQuizFile(lessonName, quizFilename);
+    setFileData((prevState) => ({
+      ...prevState,
+      // columns: response.data.data.all_columns,
+      // columns: ["question", "answer", "example", "tries", "scores", "type"],
+
+      columns: ["question", "answer", "type", "tries", "scores"],
+      data: response.data.data.data,
+    }));
+  };
+
   if (!lessonName || !quizFilename || !fileData.data.length === 0) return null;
   return (
     <div>
       <h1>File viewer</h1>
-      <button onClick={() => setViewerType("table")}>Table Viewer</button>
+      <button
+        onClick={() => {
+          setViewerType("table");
+          refreshData();
+        }}
+      >
+        Table Viewer
+      </button>
       <button onClick={() => setViewerType("quizz")}>Quizz</button>
       <button onClick={() => setViewerType("flashcard-board")}>
         Fiszki Tablica
@@ -77,11 +107,21 @@ const FileViewer = () => {
       {viewerType === "table" ? (
         <TableViewer fileData={fileData} />
       ) : viewerType === "flashcard-board" ? (
-        <FlashcardBoardViewer fileData={fileData} />
+        <FlashcardBoardViewer
+          fileData={fileData}
+          // randomRowNumber={randomRowNumber}
+        />
       ) : viewerType === "flashcard-single" ? (
-        <SinlgeFlashCardViewer fileData={fileData} />
+        <SinlgeFlashCardViewer
+          fileData={fileData}
+          randomRowNumber={randomRowNumber}
+        />
       ) : (
-        <QuizViewer fileData={fileData} handleMark={handleUpdateAPI} />
+        <QuizViewer
+          fileData={fileData}
+          handleMark={handleUpdateAPI}
+          randomRowNumber={randomRowNumber}
+        />
       )}
 
       {/* <p>lessonName: {lessonName} </p> */}
