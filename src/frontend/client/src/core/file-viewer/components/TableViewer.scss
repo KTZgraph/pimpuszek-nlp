@@ -21,26 +21,25 @@ $row-number-color: #737373;
   background: #fff;
   font-family: "Noto Sans", sans-serif;
   color: #444;
-  font-size: 14px;
+  font-size: 10px;
 }
 
 .table_viewer__cell-row {
   display: flex;
+  flex-shrink: 1;
 }
 
 .table_viewer__row-number,
 .table_viewer__row-number:disabled {
   border: 1px solid $column-name-color;
-  font-size: 13px;
   color: $row-number-color;
   width: 20px;
-  font-size: 10px;
   text-align: right;
 }
 
 .table_viewer__cell {
   border: 1px solid $column-name-color;
-  width: 300px;
+  // width: 300px;
   line-break: normal;
   height: 30px;
   font-size: 10px;
@@ -48,9 +47,7 @@ $row-number-color: #737373;
 
 .table_viewer__cell--column-name {
   background-color: pink;
-  font-weight: bold;
-  font-size: 16px;
-  padding: 10px 0;
   text-align: center;
   color: gray;
+  font-size: 10px;
 }

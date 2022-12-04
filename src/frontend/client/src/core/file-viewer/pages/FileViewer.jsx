@@ -1,65 +1,60 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import { getNotionFile } from "../../../api/file-viewer/pages";
+import {
+  getNotionFile,
+  getLessonNotionQuizFile,
+} from "../../../api/file-viewer/pages";
 import TableViewer from "../components/TableViewer";
 import QuizViewer from "../components/QuizViewer";
+import FlashcardBoardViewer from "../components/FlashcardBoardViewer";
 
 const FileViewer = () => {
   const { lessonName, quizFilename } = useParams();
   const [viewerType, setViewerType] = useState("table");
 
   const [fileData, setFileData] = useState({
-    data: [],
-    question_columns: [],
-    answer_columns: [],
-    type_column: "",
-    example_columns: [],
-    // TODO zrobić z backendu
     columns: [],
+    data: [],
   });
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const {
-  //       data,
-  //       question_columns,
-  //       answer_columns,
-  //       type_column,
-  //       example_columns,
-  //       columns,
-  //     } = await getNotionFile(lessonName, notionFilename);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getLessonNotionQuizFile(lessonName, quizFilename);
+      setFileData((prevState) => ({
+        ...prevState,
+        // columns: response.data.data.all_columns,
+        // columns: ["question", "answer", "example", "tries", "scores", "type"],
 
-  //     setFileData((prevState) => ({
-  //       ...prevState,
-  //       data: data,
-  //       question_columns: question_columns,
-  //       answer_columns: answer_columns,
-  //       type_column: type_column,
-  //       example_columns: example_columns,
-  //       columns: columns,
-  //     }));
-  //   };
-  //   fetchData();
-  // }, [lessonName, notionFilename]);
+        columns: ["question", "answer", "type", "tries", "scores"],
+        data: response.data.data.data,
+      }));
 
-  // if (fileData.data.length === 0) return null;
+      console.log("response: ", response);
+    };
 
+    fetchData();
+  }, [lessonName, quizFilename]);
+
+  if (!lessonName || !quizFilename || !fileData.data.length === 0) return null;
   return (
     <div>
       <h1>File viewer</h1>
       <button onClick={() => setViewerType("table")}>Table Viewer</button>
       <button onClick={() => setViewerType("quizz")}>Quizz</button>
-      <button onClick={() => setViewerType("fiszki")}>Fiszki</button>
-      {/* {viewerType === "table" ? (
+      <button onClick={() => setViewerType("flashcard-board")}>
+        Fiszki Tablica
+      </button>
+      {viewerType === "table" ? (
         <TableViewer fileData={fileData} />
+      ) : viewerType === "flashcard-board" ? (
+        <FlashcardBoardViewer fileData={fileData} />
       ) : (
         <QuizViewer fileData={fileData} />
-      )} */}
+      )}
 
-      <p>lessonName: {lessonName} </p>
-      <p>quizFilename: {quizFilename} </p>
-      {/* {JSON.stringify(fileData.data)} */}
+      {/* <p>lessonName: {lessonName} </p> */}
+      {/* <p>quizFilename: {quizFilename} </p> */}
     </div>
   );
 };

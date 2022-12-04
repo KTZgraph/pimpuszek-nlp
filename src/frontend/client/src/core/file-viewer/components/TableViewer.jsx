@@ -12,6 +12,7 @@ const Cell = ({ data, className }) => {
 };
 
 const TableViewer = ({ fileData }) => {
+  // FIXMe - opcja wyświetlania kolumn
   return (
     <div className="table_viewer">
       <div key={fileData.columns} className="table_viewer__cell-row">

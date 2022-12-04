@@ -133,3 +133,22 @@ python manage.py migrate lessons --database=lessons
 ## 5.4 GET http://127.0.0.1:8000/api/lessons/notion?lesson=lesson_1&notion_filename=słówka.json
 
 - zwracanie jsona z pliku - nawet polskie znaki ogarnia w parametrze
+
+## 6.1 GET http://127.0.0.1:8000/api/lessons/notion-quiz-data?lesson_name=lesson_6&quiz_filename=slowka_quiz_z_all_columns
+
+- http://localhost:3000/lessons/lesson_6/notion-quiz/slowka_quiz_z_all_columns
+
+## 6.2 POST http://127.0.0.1:8000/api/lessons/notion-quiz/
+
+```json
+{
+  "lesson_name": "lesson_3",
+  "notion_url": "https://www.notion.so/f12567bbeab4466e8be3c0f86506936b?v=5ae25c96838d4da683a389dc5594d441",
+  "quiz_filename": "slowka_quiz_z_typem",
+  "all_columns": ["niemiecki", "polski", "Select"],
+  "type_column_name": "Select",
+  "question_column_list": ["polski"],
+  "answer_column_list": ["niemiecki"],
+  "example_column_list": []
+}
+```

@@ -24,7 +24,7 @@ class QuizMongo:
         # nazwa bazy danych to nazwa aplikacji
         self.database = self.client[self.mongodb_dabase_name]
 
-    def save_quiz_data(self, quiz_filename, quiz_data: list, lesson_name):
+    def save_quiz_data(self, quiz_filename, quiz_data: list, lesson_name, all_columns):
         # Important: In MongoDB, a collection is not created until it gets content!
 
         current_date = datetime.datetime.utcnow()
@@ -32,6 +32,7 @@ class QuizMongo:
             "filename": quiz_filename,
             "data": quiz_data,
             "created_at": current_date,
+            "all_columns": all_columns,
         }
 
         # nazwa kolekcji to nazwa lekcji

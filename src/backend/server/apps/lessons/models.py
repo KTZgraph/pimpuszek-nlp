@@ -75,4 +75,4 @@ class LessonQuizNotion(models.Model):
     filename = models.CharField(null=False, max_length=100, unique=False)
     mongodb_inserted_id = models.CharField(null=False, max_length=100, unique=True)
     created_at = models.DateTimeField(null=False)
-    filepath = models.CharField(unique=True, null=False, max_length=255)
+    filepath = models.CharField(unique=False, null=False, max_length=255)

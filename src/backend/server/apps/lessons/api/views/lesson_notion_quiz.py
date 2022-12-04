@@ -143,6 +143,7 @@ class LessonNotionQuizView(APIView):
             quiz_filename=quiz_filename,
             quiz_data=quiz_data,
             lesson_name=lesson_name,
+            all_columns=all_columns,
         )
 
         lesson_dir_list = LessonDir.objects.filter(dir_name=lesson_name)

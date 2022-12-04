@@ -58,6 +58,7 @@ class LessonNotionQuizDataView(APIView):
                     "lesson_name": lesson_name,
                     "quiz_filename": quiz_filename,
                     "data": document["data"],
+                    "all_columns": document["all_columns"],
                     "_id": str(document["_id"]),
                 },
             },

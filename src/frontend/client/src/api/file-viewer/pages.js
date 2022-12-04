@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// FIXME- czy w ogóle potrzebne?
 export const getNotionFile = async (lessonName, notionFilename) => {
   // /api/lessons/notion?lesson=lesson_1&notion_filename=słówka.json
   const API_URL = `/api/lessons/notion?lesson=${lessonName}&notion_filename=${notionFilename}`;
