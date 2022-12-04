@@ -104,17 +104,26 @@ const FileViewer = () => {
       <button onClick={() => setViewerType("flashcard-single")}>
         Fiszka Pojedyncza
       </button>
+
+      <button onClick={() => setViewerType("flashcard-single-random")}>
+        Fiszka Pojedyncza Losowa
+      </button>
+
       {viewerType === "table" ? (
         <TableViewer fileData={fileData} />
       ) : viewerType === "flashcard-board" ? (
-        <FlashcardBoardViewer
-          fileData={fileData}
-          // randomRowNumber={randomRowNumber}
-        />
+        <FlashcardBoardViewer fileData={fileData} />
       ) : viewerType === "flashcard-single" ? (
         <SinlgeFlashCardViewer
           fileData={fileData}
           randomRowNumber={randomRowNumber}
+          random={false}
+        />
+      ) : viewerType === "flashcard-single-random" ? (
+        <SinlgeFlashCardViewer
+          fileData={fileData}
+          randomRowNumber={randomRowNumber}
+          random={true}
         />
       ) : (
         <QuizViewer
