@@ -2,6 +2,8 @@ import { useState, useRef } from "react";
 import { germanLetters as extraLetters } from "../../../helpers/extra_letters";
 import { myXOR } from "../../../helpers/utils";
 
+import "./UserAnswer.scss";
+
 const UserAnswer = ({
   answer,
   handleUserAnswer,
