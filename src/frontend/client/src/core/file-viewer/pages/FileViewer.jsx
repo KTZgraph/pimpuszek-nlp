@@ -8,6 +8,7 @@ import {
 import TableViewer from "../components/TableViewer";
 import QuizViewer from "../components/QuizViewer";
 import FlashcardBoardViewer from "../components/FlashcardBoardViewer";
+import SinlgeFlashCardViewer from "../components/SinlgeFlashCardViewer";
 
 const FileViewer = () => {
   const { lessonName, quizFilename } = useParams();
@@ -45,10 +46,15 @@ const FileViewer = () => {
       <button onClick={() => setViewerType("flashcard-board")}>
         Fiszki Tablica
       </button>
+      <button onClick={() => setViewerType("flashcard-single")}>
+        Fiszka Pojedyncza
+      </button>
       {viewerType === "table" ? (
         <TableViewer fileData={fileData} />
       ) : viewerType === "flashcard-board" ? (
         <FlashcardBoardViewer fileData={fileData} />
+      ) : viewerType === "flashcard-single" ? (
+        <SinlgeFlashCardViewer fileData={fileData} />
       ) : (
         <QuizViewer fileData={fileData} />
       )}

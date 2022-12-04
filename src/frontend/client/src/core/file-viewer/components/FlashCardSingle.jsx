@@ -1,13 +1,15 @@
 import { useState, useRef } from "react";
 
-import "./FlashCard.scss";
-const FlashCard = ({
+import "./FlashCardSingle.scss";
+
+const FlashCardSingle = ({
   question,
   answer,
   flip,
   setFlip,
   flashCardId,
   flashCardsTotal,
+  type,
 }) => {
   const frontEl = useRef();
   const backEl = useRef();
@@ -28,11 +30,12 @@ const FlashCard = ({
       </div>
       {/* przód ficzki - pytanie */}
       <div className="flash-card__front" ref={frontEl}>
-        {question}
+        <p> {question}</p>
+        <p>{type}</p>
         <div className="flashcard-options"></div>
       </div>
 
-      {/* ył fiszki - odpowiedź */}
+      {/* tył fiszki - odpowiedź */}
       <div className="flash-card__back" ref={backEl}>
         {answer}
       </div>
@@ -40,4 +43,4 @@ const FlashCard = ({
   );
 };
 
-export default FlashCard;
+export default FlashCardSingle;

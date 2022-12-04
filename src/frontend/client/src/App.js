@@ -1,7 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// import Home from "./core/home/pages/Home";
-import FlashCardList from "./core/flashcards/pages/FlashCardList";
 import LessonList from "./core/lessons/pages/LessonList";
 import LessonNew from "./core/lessons/pages/LessonNew";
 import LessonDetails from "./core/lessons/pages/LessonDetails";
@@ -18,7 +16,6 @@ function App() {
           <Route path="/">
             {/* <Route index element={<Home />} /> */}
             <Route index element={<FileViewer />} />
-            <Route path="flashcards" element={<FlashCardList />} />
             <Route path="lessons" element={<LessonList />} />
             <Route path="lessons/new" element={<LessonNew />} />
             <Route path="lessons/:lessonName" element={<LessonDetails />} />
