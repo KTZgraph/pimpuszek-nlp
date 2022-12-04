@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import UserAnswer from "./userAnser";
+import UserAnswer from "./UserAnswer";
 
 import "./Quizz.scss";
 
