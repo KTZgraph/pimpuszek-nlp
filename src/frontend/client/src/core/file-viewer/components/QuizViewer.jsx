@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+
 import Quizz from "./Quiz";
 
-const QuizViewer = ({ fileData }) => {
+const QuizViewer = ({ fileData, handleMark }) => {
   const [rowId, setRowId] = useState(0);
   const [quizzesTotal, setQuizzesTotal] = useState(0);
   const [currentQuiz, setCurrentQuiz] = useState(null);
@@ -19,6 +20,9 @@ const QuizViewer = ({ fileData }) => {
       : setRowId(fileData.data.length - 1);
 
     setCurrentQuiz(fileData.data[rowId]);
+
+    // update API
+    handleMark(rowId, mark);
   };
 
   if (!currentQuiz) return null;

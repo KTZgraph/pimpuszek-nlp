@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { updateLessonNotionQuizFileProgress } from "../../../api/file-viewer/pages";
 
 import {
   getNotionFile,
@@ -13,6 +14,30 @@ import SinlgeFlashCardViewer from "../components/SinlgeFlashCardViewer";
 const FileViewer = () => {
   const { lessonName, quizFilename } = useParams();
   const [viewerType, setViewerType] = useState("table");
+
+  // TODO rowId zarządzane prze z komponent główny
+  const handleUpdateAPI = async (rowId, mark) => {
+    try {
+      const response = await updateLessonNotionQuizFileProgress(
+        lessonName,
+        quizFilename,
+        rowId,
+        mark
+      );
+
+      // BUG  update danych na widoku - tylko powoduje przeskakiwanie na pierwszą fiszkę
+      setFileData((prevState) => ({
+        ...prevState,
+        // columns: response.data.data.all_columns,
+        // columns: ["question", "answer", "example", "tries", "scores", "type"],
+
+        columns: ["question", "answer", "type", "tries", "scores"],
+        data: response.data.data.data,
+      }));
+    } catch (err) {
+      console.log("handleUpdateAPI: ", err);
+    }
+  };
 
   const [fileData, setFileData] = useState({
     columns: [],
@@ -56,7 +81,7 @@ const FileViewer = () => {
       ) : viewerType === "flashcard-single" ? (
         <SinlgeFlashCardViewer fileData={fileData} />
       ) : (
-        <QuizViewer fileData={fileData} />
+        <QuizViewer fileData={fileData} handleMark={handleUpdateAPI} />
       )}
 
       {/* <p>lessonName: {lessonName} </p> */}

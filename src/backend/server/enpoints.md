@@ -152,3 +152,16 @@ python manage.py migrate lessons --database=lessons
   "example_column_list": []
 }
 ```
+
+# 6.3 POST http://127.0.0.1:8000/api/lessons/notion-quiz-data/
+
+- aktualizacja wartości data documnetu mongodb
+
+```json
+{
+  "lesson_name": "lesson_6",
+  "quiz_filename": "slowka_quiz_z_all_columns",
+  "row_id": 0,
+  "mark_value": 0
+}
+```

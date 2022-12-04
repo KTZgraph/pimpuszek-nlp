@@ -36,3 +36,21 @@ export const getLessonNotionQuizFile = async (lessonName, quizFilename) => {
   const response = await axios.get(API_URL);
   return response;
 };
+
+export const updateLessonNotionQuizFileProgress = async (
+  lessonName,
+  quizFilename,
+  rowId,
+  mark
+) => {
+  const body = {
+    lesson_name: lessonName,
+    quiz_filename: quizFilename,
+    row_id: rowId,
+    mark_value: mark,
+  };
+
+  const API_URL = `/api/lessons/notion-quiz-data/`;
+  const response = await axios.post(API_URL, body);
+  return response;
+};

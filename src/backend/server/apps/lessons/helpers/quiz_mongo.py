@@ -67,3 +67,15 @@ class QuizMongoSearcher:
         self.collection = self.database[lesson_name]
         document = self.collection.find_one({"_id": objInstance})
         return document
+
+    def update_data_field(
+        self, lesson_name, quiz_mongo_id, new_data_field, filed_name="data"
+    ):
+        # https://kb.objectrocket.com/mongo-db/how-to-update-a-mongodb-document-in-python-356
+        objInstance = ObjectId(quiz_mongo_id)
+        self.collection = self.database[lesson_name]
+        
+        document = self.collection.find_one_and_update(
+            {"_id": objInstance}, {"$set": {filed_name: new_data_field}}, upsert=True
+        )
+        return document

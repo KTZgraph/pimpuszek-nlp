@@ -42,6 +42,7 @@ const Quizz = ({ question, exampleList, answer, placeholder, handleNext }) => {
   const [isCapsLockOn, setIsCapsLockOn] = useState(false);
 
   const handleUserAnswer = () => {
+    let mark = 0;
     if (userAnswer.trim() === answer) console.log("dobra odpowiedź");
     else console.log("ZŁA odpowiedź");
     setIsAnswered(true);
