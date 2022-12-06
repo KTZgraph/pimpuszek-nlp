@@ -13,7 +13,6 @@ const createMediaDir = async () => {
 
 const createLesson = (lessonName) => {
   // dla pewnoście przed wejściem w link lekcji tworzę root dir
-  createMediaDir();
 
   console.log("createLesson\n\n\n\n");
   var lessonDirPath = path.join(
@@ -41,6 +40,8 @@ const listDirectories = async (pathToDirectory) => {
 };
 
 export default async function handler(req, res) {
+  createMediaDir();
+
   if (req.method === "POST") {
     /* Tworzy nowy folder lekcji - numery po kolei od 1*/
     const listDir = await listDirectories(MEDIA_DIR_PATH);
