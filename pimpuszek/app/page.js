@@ -1,12 +1,14 @@
-import React from "react";
-import LoginBtn from "../components/login-btn";
-const Page = () => {
+"use client";
+
+import NextAuthLoginButton from "./login-btn";
+
+const page = () => {
   return (
     <div>
-      <h1>Home page</h1>
-      <LoginBtn />
+      <h1>Hello</h1>
+      <NextAuthLoginButton />
     </div>
   );
 };
 
-export default Page;
+export default page;

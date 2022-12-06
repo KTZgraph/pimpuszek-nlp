@@ -1,10 +1,26 @@
-# https://www.youtube.com/watch?v=xXwxEudjiAY&list=PLxCkFZQohykk8ejbV94XbigHSONNq4m3C
+npm install axios
 
-- npm run dev
+https://www.youtube.com/watch?v=k_x6kGHhEns&list=PLnF3iL9xWR2tNu1D6fuJIPoqTb1xKUeZC&index=3
+https://www.youtube.com/watch?v=EL8eXM1sGaU&list=PLnF3iL9xWR2tNu1D6fuJIPoqTb1xKUeZC&index=4
 
-# https://www.youtube.com/watch?v=DfIDr2jCkHo&list=PLxCkFZQohyklNCNiqx-mJ5IiKeRgHaGvn
+npm i next-auth
 
-## 1. https://youtu.be/DfIDr2jCkHo
-- https://www.npmjs.com/package/next-auth
-- npm i next-auth
-- https://next-auth.js.org/getting-started/example
+https://youtu.be/EL8eXM1sGaU
+https://www.prisma.io/docs/getting-started/quickstart
+npm install prisma --save-dev
+npx prisma init --datasource-provider sqlite
+
+npm i @prisma/client
+C:\Users\human\Desktop\next-folder\next-folder\prisma\schema.prisma
+
+npx prisma migrate dev --name init
+npx prisma migrate dev --name user_model_added
+
+npx prisma migrate
+npx prisma migrate dev
+
+# Prisma studio
+
+https://www.prisma.io/studio
+npx prisma studio
+http://localhost:5555/

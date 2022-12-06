@@ -1,7 +1,8 @@
-// https://next-auth.js.org/getting-started/example#frontend---add-react-hook
+"use client";
 
 import { useSession, signIn, signOut } from "next-auth/react";
-export default function Component() {
+
+export default function NextAuthLoginButton() {
   const { data: session } = useSession();
   if (session) {
     return (
