@@ -1,5 +1,5 @@
 //github.com/vercel/next.js/discussions/37886
-https: import multer from "multer";
+import multer from "multer";
 
 const upload = multer({ dest: "uploads/" });
 
