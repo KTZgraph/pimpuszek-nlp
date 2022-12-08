@@ -39,13 +39,19 @@ https://developers.notion.com/docs/working-with-databases
 
 /**\*\***\*\*\*\***\*\***\*\***\*\***\*\*\*\***\*\***\*\*\*\***\*\***\*\*\*\***\*\***\*\***\*\***\*\*\*\***\*\***/
 
+# [PENDING] Next.js Database & User Authentication Quickstart
+
+https://www.youtube.com/watch?v=0Fs96oZ4se0
+
+-https://supabase.com/docs/guides/with-nextjs
+
+- npm install @supabase/supabase-js
+- npm install @supabase/auth-helpers-react @supabase/auth-helpers-nextjs
+- npm install @supabase/auth-ui-react
+
 # [TODO] Next Auth and Prisma
 
 - https://www.youtube.com/watch?v=vo2uq1cJV6w
-
-# [porównac] Next.js Database & User Authentication Quickstart
-
-https://www.youtube.com/watch?v=0Fs96oZ4se0
 
 # ---------------------- WAZNE
 
