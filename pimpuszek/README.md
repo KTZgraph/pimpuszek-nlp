@@ -24,3 +24,9 @@ npx prisma migrate dev
 https://www.prisma.io/studio
 npx prisma studio
 http://localhost:5555/
+
+# Notion
+
+https://developers.notion.com/docs/working-with-databases
+
+- npm i @notionhq/client

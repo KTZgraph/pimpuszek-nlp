@@ -3,58 +3,68 @@ import axios from "axios";
 import { useState } from "react";
 
 const FileUpload = ({ lessonName, setFileList }) => {
-  const [lessonFileList, setLessonFileList] = useState([]);
+  const [uploading, setUploading] = useState(null);
+  const [fileListUpload, setFileListUpload] = useState([]);
+  const [selectedImage, setSelectedImage] = useState("");
 
-  const handleFileUpload = async () => {
-    // e.preventDefault();
+  const handleClick = async () => {
+    console.log("fileListUpload: ", fileListUpload);
+    if (fileListUpload.length === 0) return;
 
-    if (lessonFileList.length === 0) return;
-
-    console.log("fileUpload: ", lessonFileList);
-    for (const lessonFile in lessonFileList) {
+    // for (const fileUpload in fileListUpload) {
+    try {
       const formData = new FormData();
+      formData.append("lessonFile", fileListUpload);
+      const { data } = await axios.post(
+        `/api/lesson-files?lessonName=${lessonName}`,
+        formData
+      );
+      console.log(data);
+    } catch (err) {
+      console.log("err:", err);
+      console.log(err.response?.data);
+    }
+  };
 
-      formData.append("file", lessonFile);
-      const config = {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      };
+  const handleChange = async (e) => {
+    if (e.target.files) {
+      const file = e.target.files[0];
+      setFileListUpload(file);
+      // const chosenFiles = Array.prototype.slice.call(e.target.files);
 
-      const response = await axios.post("/api/lesson-files", formData, config);
-      console.log("response: ", response);
-
-      const { data } = response.data;
-      setFileList((prevState) => [...prevState, data]);
+      // setFileListUpload((prevState) => [...prevState, e.target.files]);
+      // setFileListUpload((prevState) => [...prevState, chosenFiles]);
+      // setSelectedImage(URL.createObjectURL(file));
     }
   };
 
   return (
-    <form
-      method="POST"
-      //  BUG tylko z tą akcją działa
-      action="/api/lesson-files"
-      //   action={`/lessons/${lessonName}`}
-      // action={(e) => handleFileUpload(e)}
-      onSubmit={handleFileUpload}
-      //   action="/lessons"
-      encType="multipart/form-data"
-    >
-      <input
-        //   lessonFileInput ta nazwa w
-        //       await runMiddleware(req, res, upload.single("lessonFileInput"));
-        name="lessonFileInput"
-        id="lessonFileInput"
-        type="file"
-        onChange={(e) =>
-          setLessonFileList((prevState) => [...prevState, e.target.files])
-        }
-      />
-      <input type="submit" />
-      {/* <button type="submit" onClick={(e) => handleFileUpload(e)}>
-        Dodaj plik do lekcji
-      </button> */}
-    </form>
+    <div>
+      <h1>File upload</h1>
+      <div>
+        <label htmlFor="fileSelect">
+          <input
+            type="file"
+            hidden
+            // BUG - problem jest w multiple
+            // multiple
+            id="fileSelect"
+            name="fileSelect"
+            onChange={async (e) => await handleChange(e)}
+          />
+          <div>
+            <span>Kliknij tu aby wybrać obrazek</span>
+          </div>
+        </label>
+
+        {/* {fileListUpload.length ? ( */}
+        {fileListUpload ? (
+          <button type="submit" onClick={handleClick}>
+            dodaj
+          </button>
+        ) : null}
+      </div>
+    </div>
   );
 };
 
