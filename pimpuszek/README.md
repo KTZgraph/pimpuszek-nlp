@@ -34,3 +34,7 @@ https://developers.notion.com/docs/working-with-databases
 # https://www.youtube.com/watch?v=pu7xBv7sZ8s
 
 - https://studio.harperdb.io/o/0aba0baf/instances
+
+/******\*\*\*\*******\*\*\*\*******\*\*\*\*******
+# Next Auth and Prisma
+https://www.youtube.com/watch?v=vo2uq1cJV6w
