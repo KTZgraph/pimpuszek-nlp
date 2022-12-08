@@ -38,3 +38,6 @@ https://developers.notion.com/docs/working-with-databases
 /******\*\*\*\*******\*\*\*\*******\*\*\*\*******
 # Next Auth and Prisma
 https://www.youtube.com/watch?v=vo2uq1cJV6w
+- https://next-auth.js.org/adapters/prisma
+- npm install next-auth @prisma/client @next-auth/prisma-adapter
+- npm install prisma --save-dev

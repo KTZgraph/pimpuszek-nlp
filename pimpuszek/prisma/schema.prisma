@@ -17,4 +17,45 @@ model User {
   email String  @unique
   password String
   name  String?
+  notionToken String?
+  // mogodbUsername String?
+  // mogodbPassword String?
 }
+
+
+// model LessonDir{
+//   id    Int     @id @default(autoincrement())
+//   name  String  @unique
+//   title  String?
+//   description  String?
+//   classDate  DateTime?
+//   // owner  model.User
+
+// }
+
+// model LessonFile{
+//   id    Int     @id @default(autoincrement())
+//   name  String  @unique
+//   filepath  String  @unique
+//   // owner  model.User
+//   // lessonDir model.LessonDir
+
+// }
+
+// model NotionFile{
+//   id    Int     @id @default(autoincrement())
+//   name  String  @unique
+//   filepath  String  @unique
+//   notionDatabaseId String  @unique
+//   // owner  model.User
+//   // lessonDir model.LessonDir
+// }
+
+// model NotionQuiz{
+//   id    Int     @id @default(autoincrement())
+//   name  String  @unique
+//   filepath  String  @unique
+//   mongodbId String  @unique
+//   // owner  model.User
+//   // lessonDir model.LessonDir
+// }
