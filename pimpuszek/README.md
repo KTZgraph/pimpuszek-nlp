@@ -31,6 +31,24 @@ https://developers.notion.com/docs/working-with-databases
 
 - npm i @notionhq/client
 
-# https://www.youtube.com/watch?v=pu7xBv7sZ8s
+# [PENDIND] Next JS Authentication - Sign In With Google (NextAuth.js)
+
+- https://www.youtube.com/watch?v=A5ZN--P9vXM
+
+---
+
+/**********************************\*\*\*\***********************************/
+
+# [TODO] NextAuth.js Custom Adapter with HarperDB Database in Next.js
+
+- https://www.youtube.com/watch?v=pu7xBv7sZ8s
 
 - https://studio.harperdb.io/o/0aba0baf/instances
+
+# [TODO] Next Auth and Prisma
+
+- https://www.youtube.com/watch?v=vo2uq1cJV6w
+
+# [porównac] Next.js Database & User Authentication Quickstart
+
+https://www.youtube.com/watch?v=0Fs96oZ4se0
