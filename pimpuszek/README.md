@@ -30,3 +30,7 @@ http://localhost:5555/
 https://developers.notion.com/docs/working-with-databases
 
 - npm i @notionhq/client
+
+# https://www.youtube.com/watch?v=pu7xBv7sZ8s
+
+- https://studio.harperdb.io/o/0aba0baf/instances

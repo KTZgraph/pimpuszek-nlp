@@ -1,6 +1,8 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// TODO https://www.youtube.com/watch?v=8DiT-LdYXC0
+
 generator client {
   provider = "prisma-client-js"
 }
