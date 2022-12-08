@@ -37,13 +37,7 @@ https://developers.notion.com/docs/working-with-databases
 
 ---
 
-/**********************************\*\*\*\***********************************/
-
-# [TODO] NextAuth.js Custom Adapter with HarperDB Database in Next.js
-
-- https://www.youtube.com/watch?v=pu7xBv7sZ8s
-
-- https://studio.harperdb.io/o/0aba0baf/instances
+/**\*\***\*\*\*\***\*\***\*\***\*\***\*\*\*\***\*\***\*\*\*\***\*\***\*\*\*\***\*\***\*\***\*\***\*\*\*\***\*\***/
 
 # [TODO] Next Auth and Prisma
 
@@ -52,3 +46,17 @@ https://developers.notion.com/docs/working-with-databases
 # [porównac] Next.js Database & User Authentication Quickstart
 
 https://www.youtube.com/watch?v=0Fs96oZ4se0
+
+# ---------------------- WAZNE
+
+# OLEWAM google - płatne -,-
+
+# [PORZUCAM] NextAuth.js Custom Adapter with HarperDB Database in Next.js
+
+- https://www.youtube.com/watch?v=pu7xBv7sZ8s
+
+- https://studio.harperdb.io/o/0aba0baf/instances
+
+WARNING - trzeba ogarnać credentiale od googla
+
+- https://console.cloud.google.com/projectselector2/apis/credentials?pli=1&supportedpurview=project
