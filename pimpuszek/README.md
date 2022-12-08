@@ -34,6 +34,7 @@ https://developers.notion.com/docs/working-with-databases
 # [PENDIND] Next JS Authentication - Sign In With Google (NextAuth.js)
 
 - https://www.youtube.com/watch?v=A5ZN--P9vXM
+- przeywam na https://youtu.be/0Fs96oZ4se0?t=922 bo chcę next auth
 
 ---
 
