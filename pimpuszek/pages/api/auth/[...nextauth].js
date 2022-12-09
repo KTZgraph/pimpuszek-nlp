@@ -4,7 +4,6 @@ https://www.youtube.com/watch?v=EL8eXM1sGaU
 */
 
 import NextAuth from "next-auth";
-// import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 import { PrismaClient } from "@prisma/client";
@@ -12,23 +11,24 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export const authOptions = {
+  // https://next-auth.js.org/adapters/dgraph#working-with-jwt-session-and-auth-directive
+  session: {
+    strategy: "jwt",
+  },
   // Configure one or more authentication providers
   providers: [
-    // GithubProvider({
-    //   clientId: process.env.GITHUB_ID,
-    //   clientSecret: process.env.GITHUB_SECRET,
-    // }),
-    // ...add more providers here
     CredentialsProvider({
-      name: "Credentials",
+      name: "myCredetials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "username" },
+        email: { label: "email", type: "email", placeholder: "email" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
+        //credentials dane z frony, req to co w exptress Node
+        // logika - walidacja usera, znajdowanie usera w bazie etc
         const dbUser = await prisma.user.findUnique({
           where: {
-            email: credentials.username,
+            email: credentials.email,
           },
         });
 
@@ -37,10 +37,19 @@ export const authOptions = {
           if (dbUser.password == credentials.password) {
             return dbUser;
           }
+
+          return null;
         }
-        return null;
       },
     }),
   ],
+
+  // nadpisanie żeby zrobić dwój komponent do logowania https://youtu.be/EFucgPdjeNg?t=468
+  // WARNING - problemy z foldererm app
+  // pages: {
+  //   signIn: "SignIn",
+  // error: "/auth/error"
+  // signOut: "/auth/error"
+  // },
 };
 export default NextAuth(authOptions);

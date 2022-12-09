@@ -6,10 +6,10 @@ export default function RootLayout({ children }) {
     <html>
       <head />
       <body>
-        <Header />
-        <main>
-          <Providers>{children}</Providers>
-        </main>
+        <Providers>
+          <Header />
+          <main>{children}</main>
+        </Providers>
       </body>
     </html>
   );

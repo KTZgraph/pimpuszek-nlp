@@ -1,3 +1,5 @@
+// https://youtu.be/EFucgPdjeNg?t=712
+
 import { SessionProvider } from "next-auth/react";
 
 export default function App({
