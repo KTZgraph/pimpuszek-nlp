@@ -41,7 +41,11 @@ https://developers.notion.com/docs/working-with-databases
 
 - https://www.youtube.com/watch?v=EFucgPdjeNg
 
-
 # NextJS + Firebase V9 Authentication tutorial
 
+TODO https://www.youtube.com/watch?v=ZmpO65DhRN0
+
 - https://www.youtube.com/watch?v=ZmpO65DhRN0
+- npm install firebase
+
+TODO https://nextjs.org/docs/basic-features/environment-variables
