@@ -1,16 +1,16 @@
 "use client";
 
-import NextAuthLoginButton from "./login-btn";
+// import NextAuthLoginButton from "./login-btn";
 import SignIn from "./SignIn";
 
-const page = () => {
+const Home = () => {
   return (
     <div>
       <h1>Hello</h1>
-      <NextAuthLoginButton />
+      {/* <NextAuthLoginButton /> */}
       {/* <SignIn /> */}
     </div>
   );
 };
 
-export default page;
+export default Home;

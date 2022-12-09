@@ -31,6 +31,16 @@ https://developers.notion.com/docs/working-with-databases
 
 - npm i @notionhq/client
 
+# Sass
+
+https://nextjs.org/docs/messages/install-sass
+
+- npm i sass
+
+# Struktura katalogów
+
+- https://medium.com/@pablo.delvalle.cr/an-opinionated-basic-next-js-files-and-directories-structure-88fefa2aa759
+
 # https://www.youtube.com/watch?v=pu7xBv7sZ8s
 
 - https://studio.harperdb.io/o/0aba0baf/instances
@@ -49,3 +59,12 @@ TODO https://www.youtube.com/watch?v=ZmpO65DhRN0
 - npm install firebase
 
 TODO https://nextjs.org/docs/basic-features/environment-variables
+
+# TODO zobaczyć rejestrację po linku
+
+- https://console.firebase.google.com/project/pimpuszek-test/authentication/providers
+- https://firebase.google.com/docs/auth/web/email-link-auth?authuser=0&hl=en
+
+# React Passwordless Authentication Tutorial | React, NodeJS, Stytch API
+
+- TODO https://www.youtube.com/watch?v=omzQF3Gyu_0
