@@ -40,3 +40,8 @@ https://developers.notion.com/docs/working-with-databases
 # Next Auth Sign in With Credentials
 
 - https://www.youtube.com/watch?v=EFucgPdjeNg
+
+
+# NextJS + Firebase V9 Authentication tutorial
+
+- https://www.youtube.com/watch?v=ZmpO65DhRN0
