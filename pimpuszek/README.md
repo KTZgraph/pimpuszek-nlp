@@ -53,7 +53,17 @@ https://nextjs.org/docs/messages/install-sass
 
 - https://www.youtube.com/watch?v=ydz7Dj5QHKY&list=PL4cUxeGkcC9hUb6sHthUEwG7r9VDPBMKO
 - https://app.supabase.com/project/botztyifozvtpfzozono/api
->npm i @supabase/supabase-js
-env.local
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
+  > npm i @supabase/supabase-js
+  > env.local
+  > NEXT_PUBLIC_SUPABASE_URL=
+  > NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+# bezpieczeństwo danych między bazami
+
+# supabase role
+
+- https://supabase.com/docs/learn/auth-deep-dive/auth-policies
+
+# JWT Authentication with Supabase for your API
+
+https://www.youtube.com/watch?v=UEeSZkV7o_Y
