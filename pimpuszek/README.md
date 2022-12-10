@@ -67,3 +67,20 @@ https://nextjs.org/docs/messages/install-sass
 # JWT Authentication with Supabase for your API
 
 https://www.youtube.com/watch?v=UEeSZkV7o_Y
+
+# React Js Firebase File Management System
+
+https://www.youtube.com/watch?v=i90Pb13j5gw&list=PL_9VQhSm4-mpVwxnjn1Tt2vdMjMPPiIjL
+
+# Zuplo
+
+https://www.youtube.com/watch?v=UEeSZkV7o_Y
+
+# Supabase
+
+https://www.youtube.com/watch?v=v3Exg5YpJvE
+
+# Digital signature
+
+- https://www.youtube.com/watch?v=pwX0wPCvRNA
+- https://www.youtube.com/watch?v=2JFl7QvIrc4
