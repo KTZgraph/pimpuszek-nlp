@@ -52,3 +52,8 @@ https://nextjs.org/docs/messages/install-sass
 ## Supabase Tutorial #1 - What is Supabase?
 
 - https://www.youtube.com/watch?v=ydz7Dj5QHKY&list=PL4cUxeGkcC9hUb6sHthUEwG7r9VDPBMKO
+- https://app.supabase.com/project/botztyifozvtpfzozono/api
+>npm i @supabase/supabase-js
+env.local
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
