@@ -1,8 +1,7 @@
 const fs = require("fs");
 import path from "path";
 
-import { connectMongodb } from "../databases/mongodb-connector";
-const NotionQuizzModel = require("../databases/mongodb-schema");
+const NotionQuizzModel = require("../mongodb/mongodb-schema");
 
 const MEDIA_DIR_PATH = path.join(__dirname, "..", "..", "..", "..", "MEDIA");
 const NOTION_FILE_PREFIX = "notion__";

@@ -1,13 +1,13 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import { connectMongodb } from "../../databases/mongodb-connector";
+import { connectMongodb } from "../../services/mongodb/mongodb-connector";
 import {
   readNotionFile,
   getNotionQuizData,
   getNotionQuizDatabase,
-} from "../../notion/notion-files";
+} from "../../services/notion/notion-files";
 
-const NotionQuizzModel = require("../../databases/mongodb-schema");
+const NotionQuizzModel = require("../../lib/mongodb/mongodb-schema");
 
 export default async function handler(req, res) {
   const { databaseId, lessonName } = req.query;

@@ -47,24 +47,8 @@ https://nextjs.org/docs/messages/install-sass
 
 <!-- --------------------------- -->
 
-# Next Auth Sign in With Credentials - lepszy firebase
+# PENDING
 
-- https://www.youtube.com/watch?v=EFucgPdjeNg
+## Supabase Tutorial #1 - What is Supabase?
 
-# NextJS + Firebase V9 Authentication tutorial - działa, supcio
-
-https://www.youtube.com/watch?v=ZmpO65DhRN0
-
-- https://www.youtube.com/watch?v=ZmpO65DhRN0
-- npm install firebase
-
-TODO https://nextjs.org/docs/basic-features/environment-variables
-
-# TODO zobaczyć rejestrację po linku
-
-- https://console.firebase.google.com/project/pimpuszek-test/authentication/providers
-- https://firebase.google.com/docs/auth/web/email-link-auth?authuser=0&hl=en
-
-# React Passwordless Authentication Tutorial | React, NodeJS, Stytch API
-
-- TODO https://www.youtube.com/watch?v=omzQF3Gyu_0
+- https://www.youtube.com/watch?v=ydz7Dj5QHKY&list=PL4cUxeGkcC9hUb6sHthUEwG7r9VDPBMKO

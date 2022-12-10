@@ -1,10 +1,14 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 // https://youtu.be/ZmpO65DhRN0?t=1367
 import { useAuth } from "../../context/AuthContex";
 
 const Login = () => {
   const { user, login } = useAuth();
+  const router = useRouter();
+
   const [data, setData] = useState({
     email: "test@test.com",
     password: "password",
@@ -15,6 +19,9 @@ const Login = () => {
     console.log(data);
     try {
       await login(data.email, data.password);
+      if (user) {
+        router.push("/");
+      }
     } catch (err) {
       console.error(err);
     }
